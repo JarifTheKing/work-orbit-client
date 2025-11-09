@@ -21,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-blue-200 shadow-sm">
+    <div className="navbar bg-blue-50 shadow-sm">
       <div className="navbar-start">
         {/* Mobile dropdown */}
         <div className="dropdown">
@@ -58,7 +58,7 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/all-jobs"
+                to="/allJobs"
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 All Jobs
@@ -106,7 +106,7 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/all-jobs"
+              to="/allJobs"
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               All Jobs

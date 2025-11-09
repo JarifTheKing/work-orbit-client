@@ -4,6 +4,7 @@ import Root from "../Layout/Root";
 import Register from "../Pages/SIGN/Register";
 import Login from "../Pages/SIGN/Login";
 import ForgetPass from "../Pages/SIGN/ForgetPass";
+import AllJobs from "../Pages/AllJobs";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/forgetPass",
         element: <ForgetPass></ForgetPass>,
+      },
+      {
+        path: "/allJobs",
+        element: <AllJobs></AllJobs>,
       },
     ],
   },
