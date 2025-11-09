@@ -1,0 +1,43 @@
+/* LOGO Font */
+/* @import url("https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Metal+Mania&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Metal+Mania&family=Tourney:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Metal+Mania&family=Saira:ital,wght@0,100..900;1,100..900&family=Tourney:ital,wght@0,100..900;1,100..900&display=swap");
+
+.logo-font {
+  /* font-family: "Metal Mania", system-ui; */
+  font-family: "Tourney", sans-serif;
+}
+
+* {
+  font-family: "Saira", sans-serif;
+}
+
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #2079fe;
+}
+
+/* Custom primary button */
+.btn-primary {
+  @apply text-white border-none bg-gradient-to-r from-[#3620FE] to-[#2079FE]
+  transition-all duration-300 ease-in-out;
+}
+
+.btn-primary:hover {
+  @apply from-[#2079FE] to-[#3620FE] scale-105 shadow-lg;
+}
+
+[data-theme="dark"] .btn-primary {
+  @apply bg-gradient-to-r from-[#4C22B8] to-[#7B4FD6];
+}
+
+a.active {
+  border-bottom: 2px solid #2079fe;
+  border-radius: 6px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
