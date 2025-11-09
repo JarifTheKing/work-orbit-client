@@ -52,9 +52,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center gap-8 min-h-screen bg-gradient-to-br from-[#0a0f24] via-[#0f1a40] to-[#132a72] overflow-hidden px-6 py-10">
-      {/* Left Section */}
-      <div className=" flex flex-col text-center lg:text-center items-center  mb-10 lg:mb-0 lg:pr-10">
+    <div className="flex flex-col lg:flex-row items-center justify-center gap-8 min-h-screen bg-gradient-to-br from-[#5A6DD6] via-[#462254] to-[#132a72] overflow-hidden px-6 py-10">
+      {/* Left Section  */}
+      <div className="hidden lg:flex flex-col text-center items-center mb-10 lg:mb-0 lg:pr-10">
         <h1 className="text-4xl lg:text-5xl font-extrabold text-white leading-snug drop-shadow-[0_0_15px_rgba(32,121,254,0.8)]">
           Welcome to{" "}
           <span className="text-[#84b2f8] logo-font font-bold">WorkOrbit</span>
@@ -65,11 +65,11 @@ const Login = () => {
         <img
           src="/Haha.jpeg"
           alt="Login Illustration"
-          className="mx-auto lg:mx-0 mt-8 w-72 lg:w-96 rounded-xl shadow-[0_0_25px_rgba(32,121,254,0.5)]"
+          className="mx-auto mt-8 w-72 lg:w-96 rounded-xl shadow-[0_0_25px_rgba(32,121,254,0.5)]"
         />
       </div>
 
-      {/* Right Section (Login Card) */}
+      {/* Right Section */}
       <div className="relative w-full max-w-sm sm:max-w-md p-[3px] rounded-2xl border border-[#2079fe] bg-gradient-to-r from-[#2079fe]/20 via-sky-400/20 to-cyan-400/20 shadow-[0_0_25px_rgba(32,121,254,0.3)] hover:shadow-[0_0_45px_rgba(32,121,254,0.8)] transition-all duration-500">
         <div className="backdrop-blur-lg bg-white/10 rounded-2xl p-6 sm:p-8">
           {/* Header */}

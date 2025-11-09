@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
-// import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
   const { registerWithEmail, setLoading, signInWithGoogle } =
@@ -21,9 +21,8 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log({ name, userName, email, password });
+    console.log({ form, name, userName, email, password });
 
-    // Register with email and password
     registerWithEmail(email, password)
       .then((result) => {
         const user = result.user;
@@ -31,10 +30,7 @@ const Register = () => {
         form.reset();
         navigate("/");
       })
-      .catch((error) => {
-        console.error(error);
-        toast.error(error.message);
-      })
+      .catch((error) => toast.error(error.message))
       .finally(() => {
         setSubmitting(false);
         setLoading(false);
@@ -44,17 +40,13 @@ const Register = () => {
   // Handle Google Sign-In
   const handleSignInWithGoogle = () => {
     setSubmitting(true);
-
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
         toast.success(`Welcome, ${user.displayName || "User"}!`);
         navigate("/");
       })
-      .catch((error) => {
-        console.error(error);
-        toast.error(error.message);
-      })
+      .catch((error) => toast.error(error.message))
       .finally(() => {
         setSubmitting(false);
         setLoading(false);
@@ -62,112 +54,120 @@ const Register = () => {
   };
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Register Now!</h1>
-          <p className="py-6 text-gray-600">
-            Create an account to unlock exclusive features and join our
-            community.
-          </p>
-        </div>
+    <div className="flex flex-col lg:flex-row items-center justify-center gap-8 min-h-screen bg-gradient-to-br from-[#5A6DD6] via-[#2C173B] to-[#120357] overflow-hidden px-6 py-10">
+      {/* Left Section  */}
+      <div className="hidden lg:flex flex-col text-center items-center mb-10 lg:mb-0 lg:pr-10">
+        <h1 className="text-4xl lg:text-5xl font-extrabold text-white leading-snug drop-shadow-[0_0_15px_rgba(32,121,254,0.8)]">
+          Join the{" "}
+          <span className="text-[#84b2f8] logo-font font-bold">WorkOrbit</span>{" "}
+          Community
+        </h1>
+        <p className="text-gray-300 text-lg mt-4">
+          Create your account and start exploring new opportunities 🌍
+        </p>
+        <img
+          src="/gagag.jpeg"
+          alt="Register Illustration"
+          className="mx-auto mt-8 w-72 lg:w-96 rounded-xl shadow-[0_0_25px_rgba(32,121,254,0.5)]"
+        />
+      </div>
 
-        <div className="card bg-base-100 w-full max-w-sm shadow-2xl">
-          <div className="card-body">
-            <form onSubmit={handleRegister}>
-              <fieldset className="fieldset space-y-3">
-                {/* Name */}
-                <label className="label">Full Name</label>
-                <input
-                  name="name"
-                  type="text"
-                  className="input input-bordered"
-                  placeholder="Enter your name"
-                  required
-                />
-
-                {/* Username */}
-                <label className="label">Username</label>
-                <input
-                  name="userName"
-                  type="text"
-                  className="input input-bordered"
-                  placeholder="Enter a username"
-                />
-
-                {/* Email */}
-                <label className="label">Email</label>
-                <input
-                  name="email"
-                  type="email"
-                  className="input input-bordered"
-                  placeholder="Your email address"
-                  required
-                />
-
-                {/* Password */}
-                <label className="label">Password</label>
-                <input
-                  name="password"
-                  type="password"
-                  className="input input-bordered"
-                  placeholder="Create a password"
-                  required
-                />
-
-                {/* Register Button */}
-                <button
-                  type="submit"
-                  className="btn btn-primary mt-4 w-full"
-                  disabled={submitting}
-                >
-                  {submitting ? "Registering..." : "Register"}
-                </button>
-
-                <p className="text-center py-3 font-semibold text-gray-500">
-                  OR
-                </p>
-
-                {/* Google Sign-In */}
-                <button
-                  type="button"
-                  onClick={handleSignInWithGoogle}
-                  className="btn bg-white text-black border-[#e5e5e5] w-full"
-                  disabled={submitting}
-                >
-                  <svg
-                    aria-label="Google logo"
-                    width="20"
-                    height="20"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    className="mr-2"
-                  >
-                    <g>
-                      <path d="m0 0H512V512H0" fill="#fff"></path>
-                      <path
-                        fill="#34a853"
-                        d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-                      ></path>
-                      <path
-                        fill="#4285f4"
-                        d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-                      ></path>
-                      <path
-                        fill="#fbbc02"
-                        d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-                      ></path>
-                      <path
-                        fill="#ea4335"
-                        d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-                      ></path>
-                    </g>
-                  </svg>
-                  Continue with Google
-                </button>
-              </fieldset>
-            </form>
+      {/* Right Section */}
+      <div className="relative w-full max-w-sm sm:max-w-md p-[3px] rounded-2xl border border-[#2079fe] bg-gradient-to-r from-[#2079fe]/20 via-sky-400/20 to-cyan-400/20 shadow-[0_0_25px_rgba(32,121,254,0.3)] hover:shadow-[0_0_45px_rgba(32,121,254,0.8)] transition-all duration-500">
+        <div className="backdrop-blur-lg bg-white/10 rounded-2xl p-6 sm:p-8">
+          {/* Header */}
+          <div className="text-center mb-6">
+            <h2 className="text-3xl font-bold text-white tracking-wide">
+              Create Your{" "}
+              <span className="text-[#82b0f5] logo-font">Account</span>
+            </h2>
+            <p className="text-gray-300 text-sm mt-1">
+              It only takes a minute to get started 🚀
+            </p>
           </div>
+
+          {/* Register Form */}
+          <form onSubmit={handleRegister} className="space-y-5">
+            {/* Full Name */}
+            <div>
+              <label className="label text-gray-200 text-sm">Full Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your full name"
+                className="w-full px-4 py-3 rounded-lg bg-white/80 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2079fe] outline-none transition-all duration-300"
+                required
+              />
+            </div>
+
+            {/* Username */}
+            <div>
+              <label className="label text-gray-200 text-sm">Username</label>
+              <input
+                type="text"
+                name="userName"
+                placeholder="Choose a username"
+                className="w-full px-4 py-3 rounded-lg bg-white/80 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2079fe] outline-none transition-all duration-300"
+              />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label className="label text-gray-200 text-sm">Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                className="w-full px-4 py-3 rounded-lg bg-white/80 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2079fe] outline-none transition-all duration-300"
+                required
+              />
+            </div>
+
+            {/* Password */}
+            <div>
+              <label className="label text-gray-200 text-sm">Password</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Create a strong password"
+                className="w-full px-4 py-3 rounded-lg bg-white/80 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2079fe] outline-none transition-all duration-300"
+                required
+              />
+            </div>
+
+            {/* Register Button */}
+            <button
+              type="submit"
+              disabled={submitting}
+              className="w-full py-3 rounded-lg font-semibold text-white bg-[#2079fe] hover:bg-[#1d66d6] transition-all duration-300 shadow-[0_0_20px_rgba(32,121,254,0.5)] hover:shadow-[0_0_30px_rgba(32,121,254,0.8)]"
+            >
+              {submitting ? "Registering..." : "Register"}
+            </button>
+          </form>
+
+          {/* Divider */}
+          <div className="text-center text-gray-300 text-sm mt-6 mb-4">OR</div>
+
+          {/* Google Register */}
+          <button
+            type="button"
+            onClick={handleSignInWithGoogle}
+            disabled={submitting}
+            className="flex items-center justify-center gap-2 w-full py-3 rounded-lg text-gray-900 bg-white hover:bg-gray-100 font-medium transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+          >
+            <FcGoogle className="text-2xl" /> Continue with Google
+          </button>
+
+          {/* Login Link */}
+          <p className="text-center text-gray-300 mt-6 text-sm">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="text-[#2079fe] font-semibold hover:underline"
+            >
+              Log In
+            </Link>
+          </p>
         </div>
       </div>
     </div>
