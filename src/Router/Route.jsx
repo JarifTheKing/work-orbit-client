@@ -5,6 +5,10 @@ import Register from "../Pages/SIGN/Register";
 import Login from "../Pages/SIGN/Login";
 import ForgetPass from "../Pages/SIGN/ForgetPass";
 import AllJobs from "../Pages/AllJobs";
+import AddAJob from "../Pages/AddAJob";
+import MyTasks from "../Pages/MyTasks";
+import PrivateRoute from "../Layout/PrivateRoute";
+import JobDetails from "../Pages/JobDetails";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +34,31 @@ const router = createBrowserRouter([
       {
         path: "/allJobs",
         element: <AllJobs></AllJobs>,
+
+        loader: async () => {
+          const res = await fetch("http://localhost:5000/allJobs");
+          return res.json();
+        },
+      },
+      {
+        path: "/jobDetails",
+        element: <JobDetails></JobDetails>,
+      },
+      {
+        path: "/add-a-job",
+        element: (
+          <PrivateRoute>
+            <AddAJob></AddAJob>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-tasks",
+        element: (
+          <PrivateRoute>
+            <MyTasks></MyTasks>
+          </PrivateRoute>
+        ),
       },
     ],
   },

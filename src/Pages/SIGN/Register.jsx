@@ -20,9 +20,26 @@ const Register = () => {
     const userName = form.userName.value;
     const email = form.email.value;
     const password = form.password.value;
-
     console.log({ form, name, userName, email, password });
 
+    // Password validation
+    const validatePassword = (p) => {
+      if (p.length < 6) return "Password must be at least 6 characters.";
+      if (!/[A-Z]/.test(p)) return "Include at least one uppercase letter.";
+      if (!/\d/.test(p)) return "Include at least one number.";
+      if (!/[!@#$%^&*(),.?":{}|<>]/.test(p))
+        return "Include at least one special character.";
+      return null;
+    };
+
+    const error = validatePassword(password);
+    if (error) {
+      toast.error(error);
+      setSubmitting(false);
+      return;
+    }
+
+    //  Sign Up
     registerWithEmail(email, password)
       .then((result) => {
         const user = result.user;
