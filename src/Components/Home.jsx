@@ -12,19 +12,6 @@ const someDataPromise = fetch("http://localhost:5000/someJobs").then((res) =>
 );
 
 const Home = () => {
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/someJobs")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setSomeJobs(data.slice(0, 6));
-  //       setLoading(false);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Error loading jobs:", err);
-  //       setLoading(false);
-  //     });
-  // }, []);
-
   return (
     <div className="">
       <Banner></Banner>
@@ -42,6 +29,7 @@ const Home = () => {
           </div>
         }
       >
+        {/* Latest Jobs */}
         <SomeJobs someDataPromise={someDataPromise}></SomeJobs>
       </Suspense>
       <div className=""></div>
