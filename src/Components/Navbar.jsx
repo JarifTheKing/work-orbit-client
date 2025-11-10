@@ -21,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-blue-50 shadow-sm">
+    <div className="navbar bg-blue-950 text-white shadow-sm">
       <div className="navbar-start">
         {/* Mobile dropdown */}
         <div className="dropdown">
@@ -84,10 +84,7 @@ const Navbar = () => {
         </div>
 
         {/* Logo */}
-        <Link
-          to="/"
-          className="btn btn-ghost text-xl lg:text-3xl text-primary  logo-font"
-        >
+        <Link to="/" className="btn btn-ghost text-xl lg:text-3xl   logo-font">
           WorkOrbit
         </Link>
       </div>

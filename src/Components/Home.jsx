@@ -6,7 +6,6 @@ const Home = () => {
   return (
     <div>
       <Banner></Banner>
-
       {/* How It Works Section */}
       <section className="py-16 bg-gradient-to-b from-white to-blue-50">
         <div className="text-center mb-12 px-4">
@@ -14,16 +13,15 @@ const Home = () => {
             How <span className="text-blue-600 logo-font">WorkOrbit</span> Works
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Whether you’re hiring talent or finding your next freelance
-            opportunity,
-            <span className="font-semibold text-blue-500"> WorkOrbit</span>{" "}
-            makes the process simple, secure, and fast.
+            Whether you’re hiring top talent or finding your next freelance
+            opportunity,{" "}
+            <span className="font-semibold text-blue-500">WorkOrbit</span> makes
+            it simple, secure, and fast.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-8 lg:px-24">
-          {/* Create Account */}
-          <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 lg:px-20">
+          <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 w-full">
             <img
               src="/signUp.png"
               alt="Sign up"
@@ -33,13 +31,12 @@ const Home = () => {
               1. Create Your Account
             </h3>
             <p className="text-gray-600">
-              Join WorkOrbit for free in minutes and set up your profile to
-              start your freelance journey.
+              Sign up for free in minutes and personalize your profile to start
+              your freelance journey.
             </p>
           </div>
 
-          {/* Verify Email */}
-          <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300">
+          <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 w-full">
             <img
               src="/idcon_1.png"
               alt="Verify email"
@@ -49,13 +46,12 @@ const Home = () => {
               2. Verify Your Email
             </h3>
             <p className="text-gray-600">
-              Confirm your identity securely and make your account ready for
-              clients and freelancers.
+              Secure your profile and confirm your identity to connect safely
+              with clients and freelancers.
             </p>
           </div>
 
-          {/* Get Hired */}
-          <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300">
+          <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 w-full">
             <img
               src="/post.jpeg"
               alt="Post jobs"
@@ -65,84 +61,166 @@ const Home = () => {
               3. Post Jobs or Get Hired
             </h3>
             <p className="text-gray-600">
-              Post your project or explore available jobs. Collaborate and grow
-              your career online with confidence.
+              Post projects or find jobs that match your skills and collaborate
+              with professionals globally.
             </p>
           </div>
         </div>
       </section>
 
-      {/* news Section */}
+      {/* Grow Your Freelance Journey */}
+      <section className="bg-blue-800 text-white py-16">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 px-6 lg:px-16">
+          {/* Left Side */}
+          <div className="lg:w-1/2 space-y-6">
+            <p className="text-blue-200 uppercase tracking-wide font-semibold">
+              Empower Your Future
+            </p>
+
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
+              Turn Your Skills Into Success — Connect With Global Opportunities
+            </h2>
+
+            <p className="text-blue-100 leading-relaxed">
+              Join thousands of freelancers and businesses building the future
+              of work. Whether you’re showcasing your talent or finding the
+              right expert,
+              <span className="font-semibold text-white"> WorkOrbit</span> helps
+              you grow beyond boundaries.
+            </p>
+
+            <button className="mt-4 bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition-all duration-300">
+              Post a Job Now
+            </button>
+
+            <div className="flex flex-wrap gap-6 mt-10 justify-center">
+              {/* Card 1 */}
+              <div className="bg-gradient-to-r from-pink-400 to-fuchsia-500 text-white rounded-xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-56 text-center">
+                <h3 className="text-3xl font-extrabold">850K+</h3>
+                <p className="text-sm font-medium mt-1">Active Freelancers</p>
+              </div>
+
+              {/* Card 2 */}
+              <div className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 w-56 text-center">
+                <h3 className="text-3xl font-extrabold">120K+</h3>
+                <p className="text-sm font-medium mt-1">Jobs Posted Monthly</p>
+              </div>
+
+              {/* Card 3 */}
+              <div className="bg-gradient-to-r from-indigo-600 to-violet-700 text-white rounded-xl p-6 shadow-lg hover:shadow-lg hover:-translate-y-1 transition-all duration-300 w-56 text-center">
+                <h3 className="text-3xl font-extrabold">95%</h3>
+                <p className="text-sm font-medium mt-1">Client Satisfaction</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side */}
+          <div className="lg:w-1/2">
+            <img
+              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80"
+              alt="Freelancer working happily"
+              className="w-full rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* News Section */}
       <section className="py-16 bg-white">
         <div className="text-center mb-10 px-4">
           <h2 className="text-4xl font-bold text-gray-900">
-            Discover Insights to Power Your Freelance Journey
+            Freelance Industry News & Insights
           </h2>
           <p className="text-blue-600 font-medium mt-2">
-            Tips, stories, and strategies to help you thrive in the digital
-            workspace
+            Stay informed with the latest trends, success stories, and
+            opportunities in freelancing
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 lg:px-20">
-          {/* news 1 */}
-          <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden w-full">
             <img
               src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80"
-              alt="Freelance networking"
+              alt="Networking"
               className="w-full h-56 object-cover"
             />
-            <div className="p-5">
-              <p className="text-sm text-gray-500">
-                November 10, 2025 • Networking
-              </p>
-              <h3 className="text-lg font-semibold text-gray-800 mt-2">
-                Building Connections That Grow Your Freelance Career
-              </h3>
-              <p className="text-gray-600 mt-2 text-sm leading-relaxed">
-                Discover how genuine networking and collaboration open doors to
-                long-term projects and trusted client relationships.
-              </p>
+            <div className="flex flex-col justify-between flex-1 p-5">
+              <div>
+                <p className="text-sm text-gray-500">
+                  November 10, 2025 • Networking
+                </p>
+                <h3 className="text-lg font-semibold text-gray-800 mt-2">
+                  Global Freelancers Unite: Online Networking Events Surge in
+                  2025
+                </h3>
+                <p className="text-gray-600 mt-2 text-sm leading-relaxed">
+                  Virtual events are connecting freelancers worldwide, helping
+                  professionals collaborate across borders like never before.
+                </p>
+              </div>
+              <button
+                onClick={() => (window.location.href = "/news")}
+                className="mt-6 inline-block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors self-start"
+              >
+                Read More
+              </button>
             </div>
           </div>
 
-          {/* news 2 */}
-          <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden w-full">
             <img
               src="https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=800&q=80"
-              alt="Freelance productivity"
+              alt="Productivity"
               className="w-full h-56 object-cover"
             />
-            <div className="p-5">
-              <p className="text-sm text-gray-500">
-                November 7, 2025 • Productivity
-              </p>
-              <h3 className="text-lg font-semibold text-gray-800 mt-2">
-                Mastering Time Management as a Freelancer
-              </h3>
-              <p className="text-gray-600 mt-2 text-sm leading-relaxed">
-                Learn practical ways to balance client work, personal projects,
-                and rest without burning out or missing deadlines.
-              </p>
+            <div className="flex flex-col justify-between flex-1 p-5">
+              <div>
+                <p className="text-sm text-gray-500">
+                  November 8, 2025 • Productivity
+                </p>
+                <h3 className="text-lg font-semibold text-gray-800 mt-2">
+                  AI Tools Revolutionize Freelance Productivity
+                </h3>
+                <p className="text-gray-600 mt-2 text-sm leading-relaxed">
+                  Freelancers are leveraging new AI assistants to automate
+                  repetitive work, boost efficiency, and free up creative
+                  energy.
+                </p>
+              </div>
+              <button
+                onClick={() => (window.location.href = "/news")}
+                className="mt-6 inline-block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors self-start"
+              >
+                Read More
+              </button>
             </div>
           </div>
 
-          {/* news 3 */}
-          <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden w-full">
             <img
               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
-              alt="Freelance growth"
+              alt="Freelance economy"
               className="w-full h-56 object-cover"
             />
-            <div className="p-5">
-              <p className="text-sm text-gray-500">November 3, 2025 • Growth</p>
-              <h3 className="text-lg font-semibold text-gray-800 mt-2">
-                Turning Freelancing Into a Full-Time Business
-              </h3>
-              <p className="text-gray-600 mt-2 text-sm leading-relaxed">
-                Explore how freelancers are scaling their services into personal
-                brands and sustainable online businesses.
-              </p>
+            <div className="flex flex-col justify-between flex-1 p-5">
+              <div>
+                <p className="text-sm text-gray-500">
+                  November 6, 2025 • Economy
+                </p>
+                <h3 className="text-lg font-semibold text-gray-800 mt-2">
+                  Freelance Market Hits Record Growth as Remote Work Expands
+                </h3>
+                <p className="text-gray-600 mt-2 text-sm leading-relaxed">
+                  With companies embracing flexible hiring, global freelance
+                  income grows by 18% in 2025 according to new industry data.
+                </p>
+              </div>
+              <button
+                onClick={() => (window.location.href = "/news")}
+                className="mt-6 inline-block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors self-start"
+              >
+                Read More
+              </button>
             </div>
           </div>
         </div>
