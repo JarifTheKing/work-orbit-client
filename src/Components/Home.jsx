@@ -1,11 +1,15 @@
 import React from "react";
 import Banner from "./Home/Banner";
 import AllJobs from "../Pages/AllJobs";
+import TopCategories from "./Home/TopCategories";
+
+
 
 const Home = () => {
   return (
     <div>
-      <Banner></Banner>
+      <Banner />
+
       {/* How It Works Section */}
       <section className="py-16 bg-gradient-to-b from-white to-blue-50">
         <div className="text-center mb-12 px-4">
@@ -21,66 +25,51 @@ const Home = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 lg:px-20">
-          <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 w-full">
-            <img
-              src="/signUp.png"
-              alt="Sign up"
-              className="w-32 h-32 object-contain mb-6"
-            />
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
-              1. Create Your Account
-            </h3>
-            <p className="text-gray-600">
-              Sign up for free in minutes and personalize your profile to start
-              your freelance journey.
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 w-full">
-            <img
-              src="/idcon_1.png"
-              alt="Verify email"
-              className="w-32 h-32 object-contain mb-6"
-            />
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
-              2. Verify Your Email
-            </h3>
-            <p className="text-gray-600">
-              Secure your profile and confirm your identity to connect safely
-              with clients and freelancers.
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 w-full">
-            <img
-              src="/post.jpeg"
-              alt="Post jobs"
-              className="w-32 h-32 object-contain mb-6"
-            />
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
-              3. Post Jobs or Get Hired
-            </h3>
-            <p className="text-gray-600">
-              Post projects or find jobs that match your skills and collaborate
-              with professionals globally.
-            </p>
-          </div>
+          {[
+            {
+              title: "1. Create Your Account",
+              img: "/signUp.png",
+              desc: "Sign up for free in minutes and personalize your profile to start your freelance journey.",
+            },
+            {
+              title: "2. Verify Your Email",
+              img: "/idcon_1.png",
+              desc: "Secure your profile and confirm your identity to connect safely with clients and freelancers.",
+            },
+            {
+              title: "3. Post Jobs or Get Hired",
+              img: "/post.jpeg",
+              desc: "Post projects or find jobs that match your skills and collaborate with professionals globally.",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300"
+            >
+              <img
+                src={item.img}
+                alt={item.title}
+                className="w-32 h-32 object-contain mb-6"
+              />
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                {item.title}
+              </h3>
+              <p className="text-gray-600">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Grow Your Freelance Journey */}
-      <section className="bg-blue-800 text-white py-16">
+      <section className="bg-blue-900 text-white py-16">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 px-6 lg:px-16">
-          {/* Left Side */}
           <div className="lg:w-1/2 space-y-6">
             <p className="text-blue-200 uppercase tracking-wide font-semibold">
               Empower Your Future
             </p>
-
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
               Turn Your Skills Into Success — Connect With Global Opportunities
             </h2>
-
             <p className="text-blue-100 leading-relaxed">
               Join thousands of freelancers and businesses building the future
               of work. Whether you’re showcasing your talent or finding the
@@ -88,33 +77,39 @@ const Home = () => {
               <span className="font-semibold text-white"> WorkOrbit</span> helps
               you grow beyond boundaries.
             </p>
-
             <button className="mt-4 bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition-all duration-300">
               Post a Job Now
             </button>
 
             <div className="flex flex-wrap gap-6 mt-10 justify-center">
-              {/* Card 1 */}
-              <div className="bg-gradient-to-r from-pink-400 to-fuchsia-500 text-white rounded-xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-56 text-center">
-                <h3 className="text-3xl font-extrabold">850K+</h3>
-                <p className="text-sm font-medium mt-1">Active Freelancers</p>
-              </div>
-
-              {/* Card 2 */}
-              <div className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 w-56 text-center">
-                <h3 className="text-3xl font-extrabold">120K+</h3>
-                <p className="text-sm font-medium mt-1">Jobs Posted Monthly</p>
-              </div>
-
-              {/* Card 3 */}
-              <div className="bg-gradient-to-r from-indigo-600 to-violet-700 text-white rounded-xl p-6 shadow-lg hover:shadow-lg hover:-translate-y-1 transition-all duration-300 w-56 text-center">
-                <h3 className="text-3xl font-extrabold">95%</h3>
-                <p className="text-sm font-medium mt-1">Client Satisfaction</p>
-              </div>
+              {[
+                {
+                  stat: "850K+",
+                  text: "Active Freelancers",
+                  color: "from-pink-400 to-fuchsia-500",
+                },
+                {
+                  stat: "120K+",
+                  text: "Jobs Posted Monthly",
+                  color: "from-blue-500 to-cyan-400",
+                },
+                {
+                  stat: "95%",
+                  text: "Client Satisfaction",
+                  color: "from-indigo-600 to-violet-700",
+                },
+              ].map((card, i) => (
+                <div
+                  key={i}
+                  className={`bg-gradient-to-r ${card.color} text-white rounded-xl p-6 shadow-lg hover:-translate-y-1 transition-all duration-300 w-56 text-center`}
+                >
+                  <h3 className="text-3xl font-extrabold">{card.stat}</h3>
+                  <p className="text-sm font-medium mt-1">{card.text}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right Side */}
           <div className="lg:w-1/2">
             <img
               src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80"
@@ -225,6 +220,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <TopCategories></TopCategories>
     </div>
   );
 };
