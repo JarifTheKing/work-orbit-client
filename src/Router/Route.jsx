@@ -10,6 +10,7 @@ import MyTasks from "../Pages/MyTasks";
 import PrivateRoute from "../Layout/PrivateRoute";
 import JobDetails from "../Pages/JobDetails";
 import SomeJobs from "../Components/Home/SomeJobs";
+import MyProfile from "../Pages/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyTasks></MyTasks>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-profile",
+        element: (
+          <PrivateRoute>
+            <MyProfile></MyProfile>
           </PrivateRoute>
         ),
       },

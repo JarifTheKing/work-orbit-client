@@ -81,7 +81,7 @@ const Navbar = () => {
 
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-blue-800 rounded-box mt-3 w-52 p-2 shadow"
           >
             {links}
           </ul>
@@ -100,7 +100,7 @@ const Navbar = () => {
       {user ? (
         <div className="navbar-end space-x-2">
           <div className="group relative flex gap-4 items-center">
-            <Link to="/myProfile">
+            <Link to="/my-profile">
               <img
                 className="rounded-full border border-white cursor-pointer transition-transform duration-300 group-hover:scale-110"
                 width="50"
