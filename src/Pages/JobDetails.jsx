@@ -1,10 +1,10 @@
 import React from "react";
-import { useLoaderData, useParams } from "react-router";
+import { useLoaderData } from "react-router";
 
 const JobDetails = () => {
-  const data = useLoaderData();
-  const { id } = useParams();
-  console.log(data, id);
+  const jobDetails = useLoaderData();
+  // const { id } = useParams();
+  console.log(jobDetails);
   return <div>JobDetails JobDetails</div>;
 };
 

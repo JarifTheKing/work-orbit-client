@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 
 const LatestProducts = ({ job }) => {
-  const { title, category, coverImage, userEmail } = job;
+  const { _id, title, category, coverImage, userEmail } = job;
   return (
     <div className="flex justify-center">
       <div className="relative group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden w-full max-w-[350px] h-[400px] flex flex-col">
@@ -26,7 +26,7 @@ const LatestProducts = ({ job }) => {
             <span className="px-3 py-1 bg-blue-50 text-blue-700 text-sm font-medium rounded-full">
               {category}
             </span>
-            <Link to={`/jobDetails`}>
+            <Link to={`/jobDetails/${_id}`}>
               <button className="btn btn-primary btn-sm hover:scale-105 transition-transform">
                 View
               </button>
