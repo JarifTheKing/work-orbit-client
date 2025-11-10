@@ -43,32 +43,32 @@ a.active {
 }
 
 /* MARQUEE */
-/* @keyframes marquee {
+@keyframes marquee-left {
   0% {
-    transform: translateX(0);
+    transform: translateX(100%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
 
-@keyframes marquee-reverse {
+@keyframes marquee-right {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(100%);
   }
-} */
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 20s linear infinite;
 }
 
-.animate-marquee-reverse {
+.animate-marquee-left {
   display: flex;
   width: max-content;
-  animation: marquee-reverse 20s linear infinite;
+  animation: marquee-left 28s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 25s linear infinite;
 }

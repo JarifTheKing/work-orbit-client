@@ -16,7 +16,7 @@ const TopCategories = () => {
 
       {/*  Row 1  */}
       <div className="relative overflow-hidden">
-        <div className="flex gap-8 animate-marquee px-6">
+        <div className="flex gap-8 animate-marquee-left px-6">
           {/* Card 1 */}
           <div className="min-w-[250px] bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-transform hover:-translate-y-2 cursor-pointer">
             <img
@@ -92,7 +92,7 @@ const TopCategories = () => {
 
       {/*  Row 2  */}
       <div className="relative overflow-hidden">
-        <div className="flex gap-8 animate-marquee-reverse px-6">
+        <div className="flex gap-8 animate-marquee-right px-6">
           {/* Card 5 */}
           <div className="min-w-[250px] bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-transform hover:-translate-y-2 cursor-pointer">
             <img
