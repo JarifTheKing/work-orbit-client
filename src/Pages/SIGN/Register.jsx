@@ -44,6 +44,30 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         toast.success(`Welcome, ${name || user.email}!`);
+
+        const newUser = {
+          name: name || user.displayName || "User",
+          userName: user.userName || "Unknown User",
+          email: user.email,
+          photoURL: user.photoURL || "",
+        };
+
+        // Create User in the DATABASE
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => {
+            res.json();
+          })
+          .then((data) => {
+            toast.success(" User saved to DB:", data);
+          })
+          .catch((error) => {
+            toast.error(" Error saving user:", error);
+          });
+
         form.reset();
         navigate("/");
       })
@@ -61,6 +85,29 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         toast.success(`Welcome, ${user.displayName || "User"}!`);
+
+        const newUser = {
+          name: name || user.displayName || "User",
+          userName: user.userName || "Unknown User",
+          email: user.email,
+          photoURL: user.photoURL || "",
+        };
+
+        // Create User in the DATABASE
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => {
+            res.json();
+          })
+          .then((data) => {
+            toast.success(" User saved to DB:", data);
+          })
+          .catch((error) => {
+            toast.error(" Error saving user:", error);
+          });
         navigate("/");
       })
       .catch((error) => toast.error(error.message))

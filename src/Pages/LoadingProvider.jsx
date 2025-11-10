@@ -1,7 +1,7 @@
 import React from "react";
 import { Triangle } from "react-loader-spinner";
 
-const LoadingSpinner = () => {
+const LoadingProvider = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-50">
       <Triangle
@@ -17,4 +17,4 @@ const LoadingSpinner = () => {
   );
 };
 
-export default LoadingSpinner;
+export default LoadingProvider;

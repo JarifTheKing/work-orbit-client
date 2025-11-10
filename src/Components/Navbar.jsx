@@ -39,22 +39,35 @@ const Navbar = () => {
           All Jobs
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/add-a-job"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          Add a Job
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/my-tasks"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          My Accepted Tasks
-        </NavLink>
-      </li>
+
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to="/add-a-job"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Add a Job
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/my-tasks"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              My Accepted Tasks
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/my-profile"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              My Profile
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -99,7 +112,7 @@ const Navbar = () => {
 
       {user ? (
         <div className="navbar-end space-x-2">
-          <div className="group relative flex gap-4 items-center">
+          <div className="group relative flex gap-2 items-center">
             <Link to="/my-profile">
               <img
                 className="rounded-full border border-white cursor-pointer transition-transform duration-300 group-hover:scale-110"
@@ -113,7 +126,7 @@ const Navbar = () => {
                 title={user?.displayName || "User"}
               />
             </Link>
-            <h2 className="absolute left-[-120px] top-[10px] text-sm bg-blue-500 text-white p-2 rounded-md font-bold  opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <h2 className="absolute left-[-80px] top-[10px] text-sm bg-blue-500 text-white p-2 rounded-md font-bold  opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               {user?.displayName || "Guest"}
             </h2>
 

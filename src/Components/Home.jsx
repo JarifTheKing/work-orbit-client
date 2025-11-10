@@ -1,104 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import Banner from "./Home/Banner";
 // import AllJobs from "../Pages/AllJobs";
 import TopCategories from "./Home/TopCategories";
 // import SomeJobs from "./Home/SomeJobs";
 import { Link } from "react-router";
 import { Triangle } from "react-loader-spinner";
+import SomeJobs from "./Home/SomeJobs";
+
+const someDataPromise = fetch("http://localhost:5000/someJobs").then((res) =>
+  res.json()
+);
 
 const Home = () => {
-  const [someJobs, setSomeJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/someJobs")
-      .then((res) => res.json())
-      .then((data) => {
-        setSomeJobs(data.slice(0, 6));
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error loading jobs:", err);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-white">
-        <Triangle
-          visible={true}
-          height="80"
-          width="80"
-          color="#2563eb"
-          ariaLabel="triangle-loading"
-        />
-      </div>
-    );
-  }
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/someJobs")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setSomeJobs(data.slice(0, 6));
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.error("Error loading jobs:", err);
+  //       setLoading(false);
+  //     });
+  // }, []);
 
   return (
     <div className="">
-      <div className="">
-        <Banner></Banner>
-      </div>
+      <Banner></Banner>
 
-      {/* SomeJobs Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 via-white to-blue-100 my-10 rounded-2xl w-11/12 mx-auto shadow-lg hover:shadow-2xl transition-all duration-500">
-        <div className="text-center mb-12 px-4">
-          <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
-            Featured Jobs
-          </h2>
-          <p className="text-blue-600 font-medium mt-2">
-            Explore the most recent freelance opportunities added to the
-            platform
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 lg:px-16">
-          {someJobs.map((job, index) => (
-            <div
-              key={index}
-              className="relative group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
-            >
-              <figure className="h-52 overflow-hidden">
-                <img
-                  src={job.coverImage}
-                  alt={job.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                />
-              </figure>
-
-              <div className="p-5">
-                <h2 className="text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition">
-                  {job.title}
-                </h2>
-                <p className="text-sm text-gray-600 mt-1">{job.userEmail}</p>
-
-                <div className="flex justify-between items-center mt-5">
-                  <span className="px-3 py-1 bg-blue-50 text-blue-700 text-sm font-medium rounded-full">
-                    {job.category}
-                  </span>
-                  <Link to="">
-                    <button className="btn btn-primary btn-sm hover:scale-105 transition-transform">
-                      View
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Show More button */}
-        <div className="flex justify-center mt-12">
-          <Link to="/allJobs">
-            <button className="btn bg-blue-600 hover:bg-blue-700 text-white font-medium px-10 py-3 rounded-full shadow-md hover:shadow-lg transition-all">
-              Show More
-            </button>
-          </Link>
-        </div>
-      </section>
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-screen bg-white">
+            <Triangle
+              visible={true}
+              height="80"
+              width="80"
+              color="#2563eb"
+              ariaLabel="triangle-loading"
+            />
+          </div>
+        }
+      >
+        <SomeJobs someDataPromise={someDataPromise}></SomeJobs>
+      </Suspense>
+      <div className=""></div>
 
       {/* How It Works Section */}
       <section className="py-16 my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 w-11/12 mx-auto">
