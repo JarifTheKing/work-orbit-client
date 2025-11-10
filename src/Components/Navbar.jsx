@@ -20,10 +20,47 @@ const Navbar = () => {
       });
   };
 
+  const links = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/allJobs"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          All Jobs
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/add-a-job"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Add a Job
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/my-tasks"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          My Accepted Tasks
+        </NavLink>
+      </li>
+    </>
+  );
+
   return (
     <div className="navbar bg-blue-800 text-white shadow-sm">
       <div className="navbar-start">
-        {/* Mobile dropdown */}
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -42,44 +79,11 @@ const Navbar = () => {
             </svg>
           </div>
 
-          {/* Mobile menu */}
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <NavLink
-                to="/"
-                end
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/allJobs"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                All Jobs
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/add-a-job"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Add a Job
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/my-tasks"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                My Accepted Tasks
-              </NavLink>
-            </li>
+            {links}
           </ul>
         </div>
 
@@ -89,63 +93,38 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* Center section */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/allJobs"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              All Jobs
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/add-a-job"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              Add a Job
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/my-tasks"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              My Accepted Tasks
-            </NavLink>
-          </li>
-        </ul>
+        <ul className="menu menu-horizontal px-1 bg-blue-800">{links}</ul>
       </div>
-
-      {/* End section */}
 
       {user ? (
         <div className="navbar-end space-x-2">
-          <Link to="/login">
-            <img
-              className=" rounded-full border border-amber-500 w-[50px] h-[50px]"
-              src={user?.photoURL}
-              alt=""
-            />
-          </Link>
-          <Link
-            onClick={handleSignOut}
-            to="/login"
-            className="btn btn-primary text-white"
-          >
-            Logout
-          </Link>
+          <div className="group relative flex gap-4 items-center">
+            <Link to="/myProfile">
+              <img
+                className="rounded-full border border-white cursor-pointer transition-transform duration-300 group-hover:scale-110"
+                width="50"
+                height="50"
+                src={
+                  user?.photoURL ||
+                  "https://img.icons8.com/3d-fluency/94/guest-male--v3.png"
+                }
+                alt={user?.displayName}
+                title={user?.displayName || "User"}
+              />
+            </Link>
+            <h2 className="absolute left-[-120px] top-[10px] text-sm bg-blue-500 text-white p-2 rounded-md font-bold  opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {user?.displayName || "Guest"}
+            </h2>
+
+            <Link
+              onClick={handleSignOut}
+              to="/login"
+              className="btn btn-primary text-white"
+            >
+              Logout
+            </Link>
+          </div>
         </div>
       ) : (
         <div className="navbar-end space-x-2">

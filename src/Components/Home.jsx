@@ -1,70 +1,107 @@
 import React, { useEffect, useState } from "react";
 import Banner from "./Home/Banner";
-import AllJobs from "../Pages/AllJobs";
+// import AllJobs from "../Pages/AllJobs";
 import TopCategories from "./Home/TopCategories";
-import SomeJobs from "./Home/SomeJobs";
+// import SomeJobs from "./Home/SomeJobs";
 import { Link } from "react-router";
+import { Triangle } from "react-loader-spinner";
 
 const Home = () => {
   const [someJobs, setSomeJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:5000/someJobs")
       .then((res) => res.json())
-      .then((data) => setSomeJobs(data))
-      .catch((err) => console.error("Error fetching jobs:", err));
+      .then((data) => {
+        setSomeJobs(data.slice(0, 6));
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error loading jobs:", err);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-white">
+        <Triangle
+          visible={true}
+          height="80"
+          width="80"
+          color="#2563eb"
+          ariaLabel="triangle-loading"
+        />
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <Banner></Banner>
+    <div className="">
+      <div className="">
+        <Banner></Banner>
+      </div>
 
       {/* SomeJobs Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="text-center mb-10 px-4">
-          <h2 className="text-4xl font-bold text-gray-900">Featured Jobs</h2>
+      <section className="py-16 bg-gradient-to-br from-blue-50 via-white to-blue-100 my-10 rounded-2xl w-11/12 mx-auto shadow-lg hover:shadow-2xl transition-all duration-500">
+        <div className="text-center mb-12 px-4">
+          <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+            Featured Jobs
+          </h2>
           <p className="text-blue-600 font-medium mt-2">
-            Explore some of the latest freelance opportunities
+            Explore the most recent freelance opportunities added to the
+            platform
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6 lg:px-20">
-          {someJobs.length > 0 ? (
-            someJobs.map((job, index) => (
-              <div
-                key={index}
-                className="card bg-white w-full shadow-md hover:shadow-xl transition-all duration-300 rounded-xl"
-              >
-                <figure className="h-48 overflow-hidden">
-                  <img
-                    src={job.coverImage}
-                    alt={job.title}
-                    className="w-full h-full object-cover"
-                  />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title text-lg font-semibold">
-                    {job.title}
-                  </h2>
-                  <p className="text-sm text-gray-600">{job.userEmail}</p>
-                  <div className="card-actions justify-between items-center mt-4">
-                    <span className="badge badge-outline">{job.category}</span>
-                    <Link to={`/allJobs/${job._id}`}>
-                      <button className="btn btn-primary btn-sm">View</button>
-                    </Link>
-                  </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 lg:px-16">
+          {someJobs.map((job, index) => (
+            <div
+              key={index}
+              className="relative group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+            >
+              <figure className="h-52 overflow-hidden">
+                <img
+                  src={job.coverImage}
+                  alt={job.title}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                />
+              </figure>
+
+              <div className="p-5">
+                <h2 className="text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition">
+                  {job.title}
+                </h2>
+                <p className="text-sm text-gray-600 mt-1">{job.userEmail}</p>
+
+                <div className="flex justify-between items-center mt-5">
+                  <span className="px-3 py-1 bg-blue-50 text-blue-700 text-sm font-medium rounded-full">
+                    {job.category}
+                  </span>
+                  <Link to="">
+                    <button className="btn btn-primary btn-sm hover:scale-105 transition-transform">
+                      View
+                    </button>
+                  </Link>
                 </div>
               </div>
-            ))
-          ) : (
-            <p className="text-center text-gray-500 col-span-full">
-              Loading jobs...
-            </p>
-          )}
+            </div>
+          ))}
+        </div>
+
+        {/* Show More button */}
+        <div className="flex justify-center mt-12">
+          <Link to="/allJobs">
+            <button className="btn bg-blue-600 hover:bg-blue-700 text-white font-medium px-10 py-3 rounded-full shadow-md hover:shadow-lg transition-all">
+              Show More
+            </button>
+          </Link>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16 bg-gradient-to-b from-white to-blue-50">
+      <section className="py-16 my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 w-11/12 mx-auto">
         <div className="text-center mb-12 px-4">
           <h2 className="text-4xl font-extrabold text-gray-800 mb-3">
             How <span className="text-blue-600 logo-font">WorkOrbit</span> Works
@@ -114,7 +151,7 @@ const Home = () => {
       </section>
 
       {/* Grow Your Freelance Journey */}
-      <section className="bg-blue-900 text-white py-16">
+      <section className="bg-blue-900 text-white py-16 ">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 px-6 lg:px-16">
           <div className="lg:w-1/2 space-y-6">
             <p className="text-blue-200 uppercase tracking-wide font-semibold">
@@ -174,7 +211,7 @@ const Home = () => {
       </section>
 
       {/* News Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16  my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 w-11/12 mx-auto">
         <div className="text-center mb-10 px-4">
           <h2 className="text-4xl font-bold text-gray-900">
             Freelance Industry News & Insights
@@ -274,7 +311,9 @@ const Home = () => {
         </div>
       </section>
 
-      <TopCategories></TopCategories>
+      <div className=" my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 w-11/12 mx-auto">
+        <TopCategories></TopCategories>
+      </div>
     </div>
   );
 };

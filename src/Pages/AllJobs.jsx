@@ -1,60 +1,115 @@
-import React from "react";
-import { Link, useLoaderData } from "react-router";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router";
+import { Triangle } from "react-loader-spinner";
 
 const AllJobs = () => {
-  const allJobsData = useLoaderData();
-  console.log(allJobsData);
+  const [allJobsData, setAllJobsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/allJobs")
+      .then((res) => res.json())
+      .then((data) => {
+        setAllJobsData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching jobs:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-gradient-to-br from-blue-50 to-blue-100">
+        <Triangle
+          visible={true}
+          height="100"
+          width="100"
+          color="#2563eb"
+          ariaLabel="triangle-loading"
+        />
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <section className="py-16 bg-gray-50">
-        <div className="text-center mb-10 px-4">
-          <h2 className="text-4xl font-bold text-gray-900">
-            All Available Jobs
-          </h2>
-          <p className="text-blue-600 font-medium mt-2">
-            Browse all freelance and remote opportunities
-          </p>
-        </div>
+    <section className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen overflow-hidden">
+      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-300/30 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-blue-200/40 rounded-full blur-3xl opacity-50 animate-pulse"></div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6 lg:px-20">
-          {allJobsData && allJobsData.length > 0 ? (
-            allJobsData.map((job) => (
-              <div
-                key={job._id}
-                className="card bg-white w-full shadow-md hover:shadow-xl transition-all duration-300 rounded-xl"
-              >
-                <figure className="h-48 overflow-hidden">
-                  <img
-                    src={job.coverImage || "/placeholder-job.jpg"}
-                    alt={job.title}
-                    className="w-full h-full object-cover"
-                  />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title text-lg font-semibold">
+      {/* Header */}
+      <div className="relative text-center mb-16 px-4 z-10">
+        <h2 className="text-5xl font-extrabold text-gray-900 mb-3 tracking-tight drop-shadow-sm">
+          Discover <span className="text-blue-600">Exciting Opportunities</span>
+        </h2>
+        <p className="text-gray-600 font-medium max-w-2xl mx-auto">
+          Browse freelance and remote jobs tailored for your skills and
+          passions.
+        </p>
+      </div>
+
+      {/* Job Cards Grid */}
+      <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-6 lg:px-20 z-10">
+        {allJobsData && allJobsData.length > 0 ? (
+          allJobsData.map((job) => (
+            <div
+              key={job._id}
+              className="group bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-blue-100 hover:-translate-y-2"
+            >
+              <figure className="h-48 overflow-hidden">
+                <img
+                  src={job.coverImage || "/placeholder-job.jpg"}
+                  alt={job.title}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                />
+              </figure>
+
+              <div className="p-5 flex flex-col justify-between h-56">
+                <div>
+                  <h2 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
                     {job.title}
                   </h2>
-                  <p className="text-sm text-gray-600">{job.userEmail}</p>
-                  <div className="card-actions justify-between items-center mt-4">
-                    <span className="badge badge-outline">
-                      {job.category || "Uncategorized"}
-                    </span>
-                    <Link to={`/allJobs/${job._id}`}>
-                      <button className="btn btn-primary btn-sm">View</button>
-                    </Link>
-                  </div>
+                  <p className="text-sm text-gray-500 mb-2">
+                    {job.userEmail || "Anonymous"}
+                  </p>
+                  <p className="text-gray-600 text-sm leading-snug line-clamp-2">
+                    {job.description || "No job description available."}
+                  </p>
+                </div>
+
+                <div className="flex justify-between items-center mt-4">
+                  <span className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-600 rounded-full">
+                    {job.category || "General"}
+                  </span>
+                  <Link to={`/allJobs/${job._id}`}>
+                    <button className="btn btn-primary btn-sm px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors">
+                      View
+                    </button>
+                  </Link>
                 </div>
               </div>
-            ))
-          ) : (
-            <p className="text-center text-gray-500 col-span-full">
-              No jobs available.
-            </p>
-          )}
-        </div>
-      </section>
-    </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-center text-gray-500 col-span-full">
+            No jobs available.
+          </p>
+        )}
+      </div>
+
+      {/* Optional Footer CTA */}
+      <div className="relative mt-16 text-center z-10">
+        <h3 className="text-xl font-semibold text-gray-700 mb-4">
+          Can't find what you’re looking for?
+        </h3>
+        <Link to="">
+          <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">
+            Post a Job Now
+          </button>
+        </Link>
+      </div>
+    </section>
   );
 };
 
