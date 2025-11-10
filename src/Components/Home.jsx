@@ -1,14 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "./Home/Banner";
 import AllJobs from "../Pages/AllJobs";
 import TopCategories from "./Home/TopCategories";
-
-
+import SomeJobs from "./Home/SomeJobs";
+import { Link } from "react-router";
 
 const Home = () => {
+  const [someJobs, setSomeJobs] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/someJobs")
+      .then((res) => res.json())
+      .then((data) => setSomeJobs(data))
+      .catch((err) => console.error("Error fetching jobs:", err));
+  }, []);
   return (
     <div>
-      <Banner />
+      <Banner></Banner>
+
+      {/* SomeJobs Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="text-center mb-10 px-4">
+          <h2 className="text-4xl font-bold text-gray-900">Featured Jobs</h2>
+          <p className="text-blue-600 font-medium mt-2">
+            Explore some of the latest freelance opportunities
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6 lg:px-20">
+          {someJobs.length > 0 ? (
+            someJobs.map((job, index) => (
+              <div
+                key={index}
+                className="card bg-white w-full shadow-md hover:shadow-xl transition-all duration-300 rounded-xl"
+              >
+                <figure className="h-48 overflow-hidden">
+                  <img
+                    src={job.coverImage}
+                    alt={job.title}
+                    className="w-full h-full object-cover"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title text-lg font-semibold">
+                    {job.title}
+                  </h2>
+                  <p className="text-sm text-gray-600">{job.userEmail}</p>
+                  <div className="card-actions justify-between items-center mt-4">
+                    <span className="badge badge-outline">{job.category}</span>
+                    <Link to={`/allJobs/${job._id}`}>
+                      <button className="btn btn-primary btn-sm">View</button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-500 col-span-full">
+              Loading jobs...
+            </p>
+          )}
+        </div>
+      </section>
 
       {/* How It Works Section */}
       <section className="py-16 bg-gradient-to-b from-white to-blue-50">

@@ -9,6 +9,7 @@ import AddAJob from "../Pages/AddAJob";
 import MyTasks from "../Pages/MyTasks";
 import PrivateRoute from "../Layout/PrivateRoute";
 import JobDetails from "../Pages/JobDetails";
+import SomeJobs from "../Components/Home/SomeJobs";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
+        // loader: async () => {
+        //   const res = await fetch("http://localhost:5000/someJobs");
+        //   return res.json();
+        // },
       },
       {
         path: "/register",
@@ -43,6 +48,13 @@ const router = createBrowserRouter([
       {
         path: "/jobDetails",
         element: <JobDetails></JobDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/allJobs/${params.id}`),
+      },
+      {
+        path: "/someJobs",
+        element: <SomeJobs></SomeJobs>,
+        // loader: fetch("http://localhost:5000/someJobs"),
       },
       {
         path: "/add-a-job",
