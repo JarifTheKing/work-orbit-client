@@ -98,7 +98,7 @@ const AllJobs = () => {
         )}
       </div>
 
-      {/* Optional Footer CTA */}
+      {/* Post Job btn */}
       <div className="relative mt-16 text-center z-10">
         <h3 className="text-xl font-semibold text-gray-700 mb-4">
           Can't find what you’re looking for?
