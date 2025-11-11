@@ -8,10 +8,13 @@ import AllJobs from "../Pages/AllJobs";
 import AddAJob from "../Pages/AddAJob";
 import MyTasks from "../Pages/MyTasks";
 import PrivateRoute from "../Layout/PrivateRoute";
-import JobDetails from "../Pages/JobDetails";
+import JobDetails from "../Pages/SomeJobDetails";
 import SomeJobs from "../Components/Home/SomeJobs";
 import MyProfile from "../Pages/MyProfile";
 import UpdateProfile from "../Pages/UpdateProfile";
+import ErrorPage from "../Pages/ErrorPage";
+import SomeJobDetails from "../Pages/SomeJobDetails";
+import AllJobDetails from "../Pages/AllJobDetails";
 
 const router = createBrowserRouter([
   {
@@ -48,10 +51,16 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/jobDetails/:id",
-        element: <JobDetails></JobDetails>,
+        path: "/allJobDetails/:id",
+        element: <AllJobDetails></AllJobDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/allJobs/${params.id}`),
+      },
+      {
+        path: "/jobDetails/:id",
+        element: <SomeJobDetails></SomeJobDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/someJobs/${params.id}`),
       },
       {
         path: "/someJobs",
@@ -89,6 +98,10 @@ const router = createBrowserRouter([
             <UpdateProfile></UpdateProfile>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "*",
+        element: <ErrorPage></ErrorPage>,
       },
     ],
   },
