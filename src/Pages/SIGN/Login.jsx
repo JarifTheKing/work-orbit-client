@@ -1,16 +1,18 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../../Context/AuthProvider";
+// import { AuthContext } from "../../Context/AuthProvider";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
+// import useAxiosSecure from "../../Hooks/UseAxiosSecure";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const Login = () => {
   const { logInWithEmail, setLoading, signInWithGoogle } =
     useContext(AuthContext);
   const [submitting, setSubmitting] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
 
   // Email Login
@@ -99,25 +101,32 @@ const Login = () => {
 
             {/* Password */}
             <div className="relative">
-              <label className="label text-gray-200 text-sm">Password</label>
+              <label className="label text-white text-sm sm:text-base">
+                Password
+              </label>
               <input
-                type={showPassword ? "text" : "password"}
+                type={show ? "text" : "password"}
                 name="password"
+                className="input input-bordered w-full bg-white/80 text-black placeholder-gray-500"
                 placeholder="Enter your password"
-                className="w-full px-4 py-3 rounded-lg bg-white/80 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2079fe] outline-none transition-all duration-300"
                 required
               />
               <span
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-[42px] cursor-pointer text-gray-700 hover:text-[#2079fe] transition-colors"
+                onClick={() => setShow(!show)}
+                className="absolute right-3 top-[38px] cursor-pointer text-gray-700"
               >
-                {showPassword ? <FaEye /> : <IoEyeOff />}
+                {show ? <FaEye /> : <IoEyeOff />}
               </span>
             </div>
 
             {/* Forgot Password */}
-            <div className="text-right text-sm">
+            {/* <div className="text-right text-sm">
               <Link to="/forgetPass" className="text-[#2079fe] hover:underline">
+                Forgot password?
+              </Link>
+            </div> */}
+            <div className="text-right text-sm">
+              <Link to="/login" className="text-[#2079fe] hover:underline">
                 Forgot password?
               </Link>
             </div>

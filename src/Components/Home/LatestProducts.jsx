@@ -28,7 +28,7 @@ const LatestProducts = ({ job }) => {
             </span>
             <Link to={`/jobDetails/${_id}`}>
               <button className="btn btn-primary btn-sm hover:scale-105 transition-transform">
-                View
+                View Details
               </button>
             </Link>
           </div>

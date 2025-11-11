@@ -2,8 +2,12 @@ import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
 import { useNavigate } from "react-router";
+// import useAxios from "../Hooks/UseAxios";
+import useAxiosSecure from "../Hooks/UseAxiosSecure";
 
 const AddAJob = () => {
+  // const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -24,20 +28,25 @@ const AddAJob = () => {
     };
 
     // Post to My Added Jobs Page
-    fetch("http://localhost:5000/myAddedJobs", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newJob),
-    });
+    // fetch("https://workorbit-server.vercel.app/myAddedJobs", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(newJob),
+    // });
 
     // Post to My All Jobs Page
-    fetch("http://localhost:5000/allJobs", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newJob),
-    })
-      .then((res) => res.json())
-      .then(() => {
+    // fetch("https://workorbit-server.vercel.app/allJobs", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(newJob),
+    // })
+    // .then((res) => res.json())
+
+    axiosSecure.post("/myAddedJobs", newJob);
+    axiosSecure
+      .post("/allJobs", newJob)
+      .then((data) => {
+        console.log("after secure call", data.data);
         Swal.fire({
           title: "Job Added!",
           text: "Your job has been added successfully.",

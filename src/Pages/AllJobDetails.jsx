@@ -3,8 +3,11 @@ import { useLoaderData, useNavigate } from "react-router";
 import { MapPin, User, Tag, Mail } from "lucide-react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
+// import useAxios from "../Hooks/UseAxios";
+import useAxiosSecure from "../Hooks/UseAxiosSecure";
 
 const AllJobDetails = () => {
+  const axiosInstance = useAxiosSecure();
   const job = useLoaderData();
   const navigate = useNavigate();
   const taskModalRef = useRef(null);
@@ -13,7 +16,7 @@ const AllJobDetails = () => {
   const { title, postedBy, category, summary, coverImage, userEmail } =
     job || {};
 
-  // Open Modal
+  //  modal
   const handleModalOpen = () => {
     if (!user) {
       Swal.fire({
@@ -27,10 +30,60 @@ const AllJobDetails = () => {
       });
       return;
     }
+
+    if (user.email === userEmail) {
+      Swal.fire({
+        title: "Not Allowed!",
+        text: "You cannot accept a job you posted yourself.",
+        icon: "error",
+        confirmButtonText: "Got it",
+        confirmButtonColor: "#d33",
+      });
+      return;
+    }
+
     taskModalRef.current.showModal();
   };
 
-  // Submit Task
+  //  Handle task submission
+  // const handleTaskSubmit = (e) => {
+  //   e.preventDefault();
+  //   const form = e.target;
+
+  //   const taskData = {
+  //     jobTitle: title,
+  //     workerName: form.workerName.value,
+  //     workerEmail: form.workerEmail.value,
+  //     submissionText: form.submissionText.value,
+  //     submissionDate: new Date().toISOString(),
+  //     clientEmail: userEmail,
+  //   };
+
+  //   fetch("https://workorbit-server.vercel.app/myTasks", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(taskData),
+  //   })
+  //     .then((res) => res.json())
+  //     .then(() => {
+  //       Swal.fire({
+  //         title: "Job Accepted!",
+  //         text: "Task added successfully to your list.",
+  //         icon: "success",
+  //         confirmButtonColor: "#2563eb",
+  //       });
+  //       form.reset();
+  //       taskModalRef.current.close();
+  //     })
+  //     .catch(() =>
+  //       Swal.fire({
+  //         title: "Error",
+  //         text: "Failed to add task. Please try again.",
+  //         icon: "error",
+  //       })
+  //     );
+  // };
+
   const handleTaskSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -44,29 +97,37 @@ const AllJobDetails = () => {
       clientEmail: userEmail,
     };
 
-    fetch("http://localhost:5000/myTasks", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(taskData),
-    })
-      .then((res) => res.json())
+    // Post
+    // fetch("https://workorbit-server.vercel.app/myTasks", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(taskData),
+    // })
+    //   .then((res) => res.json())
+    axiosInstance
+      .post("/myTasks", taskData)
       .then(() => {
         Swal.fire({
-          title: "Job Accepted!",
-          text: "Task added successfully to your list.",
+          title: " Job Accepted!",
+          text: "Task added successfully to your accepted tasks.",
           icon: "success",
           confirmButtonColor: "#2563eb",
+          confirmButtonText: "Go to My Tasks",
+        }).then(() => {
+          navigate("/my-tasks");
         });
+
         form.reset();
         taskModalRef.current.close();
       })
-      .catch(() =>
+      .catch(() => {
         Swal.fire({
           title: "Error",
           text: "Failed to add task. Please try again.",
           icon: "error",
-        })
-      );
+          confirmButtonColor: "#ef4444",
+        });
+      });
   };
 
   if (!job) {
@@ -78,9 +139,8 @@ const AllJobDetails = () => {
   }
 
   return (
-    <div className="min-h-screen w-11/12 mx-auto bg-gradient-to-br from-blue-50 via-white to-indigo-50 px-4 sm:px-8 py-10 flex justify-center">
+    <div className="min-h-screen w-11/12 mx-auto bg-gradient-to-br from-blue-50 via-white to-indigo-50 px-4 py-10 flex justify-center">
       <div className="w-full bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-200 flex flex-col md:flex-row">
-        {/* Cover Image */}
         <div className="w-full md:w-1/2">
           <img
             src={coverImage}
@@ -89,13 +149,9 @@ const AllJobDetails = () => {
           />
         </div>
 
-        {/* Content */}
         <div className="w-full md:w-1/2 p-8 flex flex-col justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2 leading-snug">
-              {title}
-            </h1>
-
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{title}</h1>
             <div className="flex flex-wrap items-center gap-3 text-gray-600 mb-4">
               <span className="flex items-center gap-2">
                 <User size={16} className="text-blue-500" />
@@ -110,11 +166,7 @@ const AllJobDetails = () => {
                 Remote
               </span>
             </div>
-
-            <p className="text-gray-700 text-base leading-relaxed mb-6">
-              {summary}
-            </p>
-
+            <p className="text-gray-700 mb-6">{summary}</p>
             <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 mb-6">
               <h3 className="text-gray-800 font-semibold text-lg mb-2">
                 Contact Information
@@ -129,14 +181,13 @@ const AllJobDetails = () => {
           <div className="flex flex-wrap gap-4 mt-4">
             <button
               onClick={handleModalOpen}
-              className="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all duration-300"
+              className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all"
             >
               Accept the Job
             </button>
-
             <button
               onClick={() => navigate(-1)}
-              className="w-full sm:w-auto px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-100 transition-all duration-300"
+              className="px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-100 transition-all"
             >
               Go Back
             </button>
@@ -204,7 +255,7 @@ const AllJobDetails = () => {
               <button
                 type="button"
                 onClick={() => taskModalRef.current.close()}
-                className="px-5 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
+                className="px-5 py-2 border rounded-lg text-gray-700 hover:bg-gray-100 transition"
               >
                 Cancel
               </button>

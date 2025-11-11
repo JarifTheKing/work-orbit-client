@@ -3,17 +3,18 @@ import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
 import { Triangle } from "react-loader-spinner";
 import Swal from "sweetalert2";
+import useAxios from "../Hooks/UseAxios";
 
 const UpdateJob = () => {
+  const axiosInstance = useAxios();
   const { id } = useParams();
   const [job, setJob] = useState({});
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // ✅ Fetch single job details by ID
   useEffect(() => {
-    fetch(`http://localhost:5000/myAddedJobs/${id}`)
-      .then((res) => res.json())
+    axiosInstance
+      .get(`/myAddedJobs/${id}`)
       .then((data) => {
         setJob(data);
         setLoading(false);
@@ -23,9 +24,9 @@ const UpdateJob = () => {
         setLoading(false);
         toast.error("Failed to fetch job details!");
       });
-  }, [id]);
+  }, [id, axiosInstance]);
 
-  // ✅ Handle job update
+  // Handle job update
   const handleUpdate = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -37,7 +38,7 @@ const UpdateJob = () => {
       coverImage: form.coverImage.value,
     };
 
-    fetch(`http://localhost:5000/myAddedJobs/${id}`, {
+    fetch(`https://workorbit-server.vercel.app/myAddedJobs/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedJob),
@@ -47,14 +48,14 @@ const UpdateJob = () => {
         if (data.modifiedCount > 0) {
           toast.success("🎉 Job updated successfully!");
           Swal.fire({
-            title: "✅ Success!",
+            title: "Success!",
             text: "Your job has been updated successfully.",
             icon: "success",
             confirmButtonColor: "#2563eb",
           });
           navigate("/myAddedJobs");
         } else {
-          toast.info("⚠️ No changes were made!");
+          toast.info(" No changes were made!");
           Swal.fire({
             title: "No Changes Detected",
             text: "You didn’t modify any field.",
@@ -74,7 +75,7 @@ const UpdateJob = () => {
       });
   };
 
-  // ✅ Loading Spinner
+  //   Spinner
   if (loading) {
     return (
       <div className="flex flex-col justify-center items-center h-screen bg-gradient-to-br from-blue-50 to-blue-100 space-y-4">
@@ -92,7 +93,6 @@ const UpdateJob = () => {
     );
   }
 
-  // ✅ Form UI
   return (
     <div className="py-16 bg-gradient-to-b from-blue-50 via-white to-blue-100 flex items-center justify-center px-4">
       <div className="max-w-2xl w-full bg-white shadow-2xl rounded-2xl p-8 transition-transform duration-300 hover:-translate-y-1">

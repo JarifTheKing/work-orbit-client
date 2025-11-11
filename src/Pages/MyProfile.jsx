@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+// import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { Link } from "react-router";
+import useAuth from "../Hooks/UseAuth";
 
 const MyProfile = () => {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   //   const navigate = useNavigate();
 
   return (

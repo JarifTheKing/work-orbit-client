@@ -3,10 +3,18 @@ import { AuthContext } from "../../Context/AuthProvider";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
+import { FaEye } from "react-icons/fa";
+import { IoEyeOff } from "react-icons/io5";
 
 const Register = () => {
   const { registerWithEmail, setLoading, signInWithGoogle } =
     useContext(AuthContext);
+
+  const axiosSecure = useAxiosSecure();
+
+  const [show, setShow] = useState(false);
+
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
@@ -53,16 +61,11 @@ const Register = () => {
         };
 
         // Create User in the DATABASE
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newUser),
-        })
-          .then((res) => {
-            res.json();
-          })
+
+        axiosSecure
+          .post("/users", newUser)
           .then((data) => {
-            toast.success(" User saved to DB:", data);
+            toast.success(" User saved to DB:", data.data);
           })
           .catch((error) => {
             toast.error(" Error saving user:", error);
@@ -94,16 +97,10 @@ const Register = () => {
         };
 
         // Create User in the DATABASE
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newUser),
-        })
-          .then((res) => {
-            res.json();
-          })
+        axiosSecure
+          .post("/users", newUser)
           .then((data) => {
-            toast.success(" User saved to DB:", data);
+            toast.success(" User saved to DB:", data.data);
           })
           .catch((error) => {
             toast.error(" Error saving user:", error);
@@ -188,15 +185,21 @@ const Register = () => {
             </div>
 
             {/* Password */}
-            <div>
+            <div className="relative">
               <label className="label text-gray-200 text-sm">Password</label>
               <input
-                type="password"
+                type={show ? "text" : "password"}
                 name="password"
                 placeholder="Create a strong password"
                 className="w-full px-4 py-3 rounded-lg bg-white/80 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2079fe] outline-none transition-all duration-300"
                 required
               />
+              <span
+                onClick={() => setShow(!show)}
+                className="absolute right-3 top-[38px] cursor-pointer text-gray-700"
+              >
+                {show ? <FaEye /> : <IoEyeOff />}
+              </span>
             </div>
 
             {/* Register Button */}

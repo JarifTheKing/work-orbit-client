@@ -1,60 +1,104 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Trash2, Edit, Briefcase } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
+import useAxios from "../Hooks/UseAxios";
 
 const MyAddedJobs = () => {
   const { user } = useContext(AuthContext);
+  const axiosInstance = useAxios();
   const [myJobs, setMyJobs] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 🧠 Fetch only jobs added by the logged-in user
   useEffect(() => {
-    if (user?.email) {
-      fetch(`http://localhost:5000/myAddedJobs?email=${user.email}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setMyJobs(data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error(err);
-          setLoading(false);
-        });
-    } else {
-      setLoading(false); // 👈 stop loading if no user
+    if (!user?.email) {
+      setLoading(false);
+      return;
     }
-  }, [user]);
+
+    axiosInstance
+      .get(`/myAddedJobs?email=${user.email}`)
+      .then((data) => {
+        setMyJobs(data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching jobs:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [user, axiosInstance]);
+
+  // 🗑️ Delete Job
+  // const handleDelete = (id) => {
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "This job will be permanently deleted from both lists!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#d33",
+  //     cancelButtonColor: "#3085d6",
+  //     confirmButtonText: "Yes, delete it!",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       fetch(`https://workorbit-server.vercel.app/myAddedJobs/${id}`, {
+  //         method: "DELETE",
+  //       })
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //           if (data.deletedCount > 0) {
+  //             Swal.fire("Deleted!", "Job deleted successfully.", "success");
+  //             setMyJobs((prev) => prev.filter((job) => job._id !== id));
+  //           } else {
+  //             Swal.fire("Not Found!", "This job was not found.", "info");
+  //           }
+  //         })
+  //         .catch(() => {
+  //           Swal.fire(
+  //             "Error!",
+  //             "Failed to delete job. Try again later.",
+  //             "error"
+  //           );
+  //         });
+  //     }
+  //   });
+  // };
 
   // 🗑️ Delete Job
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "This job will be permanently deleted!",
+      text: "This job will be permanently deleted from both lists!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:5000/myAddedJobs/${id}`, {
-          method: "DELETE",
+      if (!result.isConfirmed) return;
+
+      axiosInstance
+        .delete(`/myAddedJobs/${id}`)
+        .then((data) => {
+          if (data.data.deletedCount > 0) {
+            Swal.fire("Deleted!", "Job deleted successfully.", "success");
+            setMyJobs((prev) => prev.filter((job) => job._id !== id));
+          } else {
+            Swal.fire("Not Found!", "This job was not found.", "info");
+          }
         })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "Your job has been removed.", "success");
-              setMyJobs(myJobs.filter((job) => job._id !== id));
-            }
-          })
-          .catch((err) => console.error("Delete failed:", err));
-      }
+        .catch(() => {
+          Swal.fire(
+            "Error!",
+            "Failed to delete job. Try again later.",
+            "error"
+          );
+        });
     });
   };
 
-  // ⏳ Loading Spinner
+  //  Spinner
   if (loading)
     return (
       <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
@@ -62,10 +106,10 @@ const MyAddedJobs = () => {
       </div>
     );
 
-  // 🧩 Render Jobs
+  //  Render Jobs
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
-      <h2 className="text-3xl font-bold text-blue-500 mb-6  text-center ">
+    <div className="max-w-7xl mx-auto px-4 py-10">
+      <h2 className="text-3xl font-bold text-blue-600 mb-8 text-center">
         My Added Jobs
       </h2>
 
@@ -74,49 +118,70 @@ const MyAddedJobs = () => {
           <p className="text-xl mb-4">You haven’t added any jobs yet.</p>
           <Link
             to="/add-a-job"
-            className="mt-4 btn btn-primary py-6 px-8 rounded-xl"
+            className="mt-4 inline-block bg-blue-600 text-white py-3 px-6 rounded-xl hover:bg-blue-700 transition"
           >
             ➕ Add a Job
           </Link>
         </div>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {myJobs.map((job) => (
             <div
               key={job._id}
-              className="bg-white shadow-md rounded-2xl p-5 flex flex-col justify-between hover:shadow-lg transition-transform hover:-translate-y-1"
+              className="group flex flex-col bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-100 overflow-hidden transition-all duration-300"
             >
-              <div>
+              {/* Job Image */}
+              <div className="h-48 overflow-hidden">
                 <img
                   src={
                     job.coverImage ||
                     "https://i.ibb.co/f2J5JHk/default-job-cover.jpg"
                   }
                   alt={job.title}
-                  className="w-full h-40 object-cover rounded-xl mb-4"
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                 />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {job.title}
-                </h3>
-                <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-                  {job.summary || job.description || "No summary provided."}
-                </p>
-                <p className="text-blue-600 font-medium">
-                  💰 {job.priceRange || "N/A"}
-                </p>
               </div>
 
-              <div className="flex justify-between items-center mt-5 border-t pt-3">
-                <Link to={`/updateJob/${job._id}`}>
-                  <button className=" btn btn-primary">Update</button>
-                </Link>
+              {/* Job Details */}
+              <div className="flex flex-col flex-grow justify-between p-5">
+                <div>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                      {job.title}
+                    </h3>
+                    <span className="px-3 py-1 text-xs bg-blue-100 text-blue-600 rounded-full">
+                      {job.category || "General"}
+                    </span>
+                  </div>
 
-                <button
-                  onClick={() => handleDelete(job._id)}
-                  className="flex btn btn-outline  items-center gap-1 text-red-600 hover:bg-red-700 hover:text-white font-medium transition"
-                >
-                  <Trash2 className="w-4 h-4" /> Delete
-                </button>
+                  <p className="text-sm text-gray-500 mb-1">
+                    {job.userEmail || "Anonymous"}
+                  </p>
+
+                  <p className="text-gray-600 text-sm leading-snug line-clamp-2 mb-4">
+                    {job.summary || "No job description available."}
+                  </p>
+
+                  <p className="text-xs text-gray-400">
+                    Posted: {new Date(job.postedDate).toLocaleDateString()}
+                  </p>
+                </div>
+
+                {/* Buttons */}
+                <div className="flex justify-between items-center mt-5 pt-4 border-t">
+                  <Link to={`/updateJob/${job._id}`}>
+                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                      Update
+                    </button>
+                  </Link>
+
+                  <button
+                    onClick={() => handleDelete(job._id)}
+                    className="flex items-center gap-1 border border-red-500 text-red-500 px-4 py-2 rounded-lg hover:bg-red-600 hover:text-white transition"
+                  >
+                    <Trash2 size={16} /> Delete
+                  </button>
+                </div>
               </div>
             </div>
           ))}

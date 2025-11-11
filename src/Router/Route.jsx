@@ -3,7 +3,7 @@ import Home from "../Components/Home";
 import Root from "../Layout/Root";
 import Register from "../Pages/SIGN/Register";
 import Login from "../Pages/SIGN/Login";
-import ForgetPass from "../Pages/SIGN/ForgetPass";
+// import ForgetPass from "../Pages/SIGN/ForgetPass";
 import AllJobs from "../Pages/AllJobs";
 import AddAJob from "../Pages/AddAJob";
 import MyTasks from "../Pages/MyTasks";
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Home></Home>,
         // loader: async () => {
-        //   const res = await fetch("http://localhost:5000/someJobs");
+        //   const res = await fetch("https://workorbit-server.vercel.app/someJobs");
         //   return res.json();
         // },
       },
@@ -40,35 +40,45 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login></Login>,
       },
-      {
-        path: "/forgetPass",
-        element: <ForgetPass></ForgetPass>,
-      },
+      // {
+      //   path: "/forgetPass",
+      //   element: <ForgetPass></ForgetPass>,
+      // },
       {
         path: "/allJobs",
         element: <AllJobs></AllJobs>,
 
         loader: async () => {
-          const res = await fetch("http://localhost:5000/allJobs");
+          const res = await fetch(
+            "https://workorbit-server.vercel.app/allJobs"
+          );
           return res.json();
         },
       },
       {
         path: "/allJobDetails/:id",
-        element: <AllJobDetails></AllJobDetails>,
+        element: (
+          <PrivateRoute>
+            <AllJobDetails></AllJobDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allJobs/${params.id}`),
+          fetch(`https://workorbit-server.vercel.app/allJobs/${params.id}`),
       },
       {
         path: "/jobDetails/:id",
-        element: <SomeJobDetails></SomeJobDetails>,
+        element: (
+          <PrivateRoute>
+            <SomeJobDetails></SomeJobDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/someJobs/${params.id}`),
+          fetch(`https://workorbit-server.vercel.app/someJobs/${params.id}`),
       },
       {
         path: "/someJobs",
         element: <SomeJobs></SomeJobs>,
-        // loader: fetch("http://localhost:5000/someJobs"),
+        // loader: fetch("https://workorbit-server.vercel.app/someJobs"),
       },
       {
         path: "/add-a-job",

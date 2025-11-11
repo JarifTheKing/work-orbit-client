@@ -3,8 +3,10 @@ import { useLoaderData, useNavigate } from "react-router";
 import { MapPin, User, Tag, Mail } from "lucide-react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
+import useAxios from "../Hooks/UseAxios";
 
 const SomeJobDetails = () => {
+  const axiosInstance = useAxios();
   const job = useLoaderData();
   const navigate = useNavigate();
   const taskModalRef = useRef(null);
@@ -44,12 +46,8 @@ const SomeJobDetails = () => {
       clientEmail: userEmail,
     };
 
-    fetch("http://localhost:5000/myTasks", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(taskData),
-    })
-      .then((res) => res.json())
+    axiosInstance
+      .post("/myTasks", taskData)
       .then(() => {
         Swal.fire({
           title: "Job Accepted!",

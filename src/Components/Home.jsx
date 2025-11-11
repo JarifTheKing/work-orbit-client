@@ -4,9 +4,9 @@ import TopCategories from "./Home/TopCategories";
 import { Triangle } from "react-loader-spinner";
 import SomeJobs from "./Home/SomeJobs";
 
-const someDataPromise = fetch("http://localhost:5000/someJobs").then((res) =>
-  res.json()
-);
+const someDataPromise = fetch(
+  "https://workorbit-server.vercel.app/someJobs"
+).then((res) => res.json());
 
 const Home = () => {
   return (
