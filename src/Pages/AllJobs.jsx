@@ -58,11 +58,17 @@ const AllJobs = () => {
                 />
               </figure>
 
-              <div className="p-5 flex flex-col justify-between h-56">
+              <div className="p-3 flex flex-col justify-between h-56">
                 <div>
-                  <h2 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
-                    {job.title}
-                  </h2>
+                  <div className="flex justify-between items-center ">
+                    <h2 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
+                      {job.title}
+                    </h2>
+
+                    <p className="px-3 py-2 text-xs font-medium bg-blue-100 text-blue-600 rounded-full">
+                      {job.category || "General"}
+                    </p>
+                  </div>
                   <p className="text-sm text-gray-500 mb-2">
                     {job.userEmail || "Anonymous"}
                   </p>
@@ -71,15 +77,23 @@ const AllJobs = () => {
                   </p>
                 </div>
 
-                <div className="flex justify-between items-center mt-4">
-                  <span className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-600 rounded-full">
-                    {job.category || "General"}
+                <div className="flex justify-between items-center mt-4 ">
+                  <span className="px-3 py-2 text-xs font-medium bg-purple-100 text-purple-600 rounded-full">
+                    {job.postedBy || "General"}
                   </span>
-                  <Link to={`/allJobDetails/${job._id}`}>
-                    <button className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition-colors">
-                      View
-                    </button>
-                  </Link>
+                  <div className="flex justify-between items-center gap-3">
+                    <Link to={``}>
+                      <button className="px-4 py-2 btn btn-outline text-blue-500 hover:bg-blue-700 hover:text-white  rounded-lg ">
+                        Accept Task
+                      </button>
+                    </Link>
+
+                    <Link to={`/allJobDetails/${job._id}`}>
+                      <button className="px-4 py-2 rounded-lg btn btn-primary text-sm font-medium  ">
+                        View
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

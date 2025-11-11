@@ -14,7 +14,7 @@ const ErrorPage = () => {
         Sorry, an unexpected error has occurred.
       </p>
       <p className="text-red-600 mb-8">
-        <i>{error.statusText || error.message}</i>
+        <i>{error?.statusText || error?.message}</i>
       </p>
       <Link
         to="/"
