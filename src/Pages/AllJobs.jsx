@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { Triangle } from "react-loader-spinner";
+import Swal from "sweetalert2";
+import { AuthContext } from "../Context/AuthProvider";
 
 const AllJobs = () => {
   const [allJobsData, setAllJobsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     fetch("http://localhost:5000/allJobs")
@@ -19,6 +22,43 @@ const AllJobs = () => {
       });
   }, []);
 
+  // ✅ Handle Accept Task
+  const handleAcceptTask = (job) => {
+    if (!user?.email) {
+      Swal.fire(
+        "Please login first!",
+        "You must be logged in to accept tasks.",
+        "warning"
+      );
+      return;
+    }
+
+    const acceptedTask = {
+      title: job.title,
+      description: job.summary,
+      category: job.category,
+      priceRange: job.priceRange,
+      coverImage: job.coverImage,
+      jobId: job._id,
+      userEmail: user.email,
+      postedBy: job.postedBy || "Unknown",
+    };
+
+    fetch("http://localhost:5000/myTasks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(acceptedTask),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        Swal.fire("Accepted!", "Task added to your accepted list.", "success");
+      })
+      .catch((error) => {
+        console.error("Error accepting task:", error);
+        Swal.fire("Error", "Something went wrong!", "error");
+      });
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen bg-gradient-to-br from-blue-50 to-blue-100">
@@ -29,9 +69,6 @@ const AllJobs = () => {
 
   return (
     <section className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen overflow-hidden">
-      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-300/30 rounded-full blur-3xl opacity-50 animate-pulse"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-blue-200/40 rounded-full blur-3xl opacity-50 animate-pulse"></div>
-
       <div className="relative text-center mb-16 px-4 z-10">
         <h2 className="text-5xl font-extrabold text-gray-900 mb-3 tracking-tight drop-shadow-sm">
           Discover <span className="text-blue-600">Exciting Opportunities</span>
@@ -82,14 +119,15 @@ const AllJobs = () => {
                     {job.postedBy || "General"}
                   </span>
                   <div className="flex justify-between items-center gap-3">
-                    <Link to={``}>
-                      <button className="px-4 py-2 btn btn-outline text-blue-500 hover:bg-blue-700 hover:text-white  rounded-lg ">
-                        Accept Task
-                      </button>
-                    </Link>
+                    <button
+                      onClick={() => handleAcceptTask(job)}
+                      className="px-4 py-2 btn btn-outline text-blue-500 hover:bg-blue-700 hover:text-white rounded-lg"
+                    >
+                      Accept Task
+                    </button>
 
                     <Link to={`/allJobDetails/${job._id}`}>
-                      <button className="px-4 py-2 rounded-lg btn btn-primary text-sm font-medium  ">
+                      <button className="px-4 py-2 rounded-lg btn btn-primary text-sm font-medium">
                         View
                       </button>
                     </Link>

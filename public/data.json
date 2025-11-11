@@ -4,8 +4,9 @@
     "postedBy": "Arif Khan",
     "category": "Web Development",
     "summary": "Build responsive React interfaces and integrate APIs for a startup dashboard project.",
-    "coverImage": "https://i.ibb.co/pwzFZwH/frontend-dev.jpg",
-    "userEmail": "arif.khan@example.com"
+    "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762753000/webdeveloper_2_k5qlyl.jpg",
+    "userEmail": "arif.khan@example.com",
+    "postedAt": "2025-11-11T09:00:00Z"
   },
   {
     "title": "SEO Specialist",
@@ -13,7 +14,8 @@
     "category": "Digital Marketing",
     "summary": "Optimize website content and improve search rankings through keyword analysis and backlinks.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762752935/magnifying-glass-with-seo-concepts_dhlzml.jpg",
-    "userEmail": "nadia.rahman@example.com"
+    "userEmail": "nadia.rahman@example.com",
+    "postedAt": "2025-11-11T09:05:00Z"
   },
   {
     "title": "Logo Designer for Tech Brand",
@@ -21,16 +23,17 @@
     "category": "Graphic Design",
     "summary": "Create a modern, minimalist logo for a new AI-based SaaS platform.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762752885/Logo_Design_for_Startup_ik1y1h.png",
-    "userEmail": "rafiul.islam@example.com"
+    "userEmail": "rafiul.islam@example.com",
+    "postedAt": "2025-11-11T09:10:00Z"
   },
-
   {
     "title": "Content Writer – Blog & Articles",
     "postedBy": "Sumaiya Akter",
     "category": "Content Writing",
     "summary": "Write SEO-optimized blogs for travel, technology, and lifestyle niches.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762752978/planning-traveling-trip-notes-wanderkust_n8dvbj.jpg",
-    "userEmail": "sumaiya.akter@example.com"
+    "userEmail": "sumaiya.akter@example.com",
+    "postedAt": "2025-11-11T09:15:00Z"
   },
   {
     "title": "Video Editor for YouTube Channel",
@@ -38,7 +41,8 @@
     "category": "Video Editing",
     "summary": "Edit and color grade travel vlogs and add cinematic transitions and music.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762753004/youtube_o4jfp6.jpg",
-    "userEmail": "tahmid.hasan@example.com"
+    "userEmail": "tahmid.hasan@example.com",
+    "postedAt": "2025-11-11T09:20:00Z"
   },
   {
     "title": "Mobile App UI Designer",
@@ -46,15 +50,17 @@
     "category": "UI/UX Design",
     "summary": "Design user-friendly mobile app screens with Figma and prototype user flow.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762752940/mobile-Desiner_jdbjov.jpg",
-    "userEmail": "moumita.sultana@example.com"
+    "userEmail": "moumita.sultana@example.com",
+    "postedAt": "2025-11-11T09:25:00Z"
   },
   {
     "title": "Full Stack Developer (MERN)",
     "postedBy": "Fahim Reza",
     "category": "Web Development",
     "summary": "Develop an end-to-end job portal using React, Node.js, and MongoDB.",
-    "coverImage": "https://i.ibb.co/GxF3xqC/fullstack.jpg",
-    "userEmail": "fahim.reza@example.com"
+    "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762752823/Full_Stack_MERN_Developer_lwqjir.jpg",
+    "userEmail": "fahim.reza@example.com",
+    "postedAt": "2025-11-11T09:30:00Z"
   },
   {
     "title": "Social Media Manager",
@@ -62,7 +68,8 @@
     "category": "Digital Marketing",
     "summary": "Plan and manage social media campaigns across Instagram and LinkedIn.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762752982/Social_Media_Campaign_Manager_ayla9f.jpg",
-    "userEmail": "afia.noor@example.com"
+    "userEmail": "afia.noor@example.com",
+    "postedAt": "2025-11-11T09:35:00Z"
   },
   {
     "title": "Poster & Banner Designer",
@@ -70,7 +77,8 @@
     "category": "Graphic Design",
     "summary": "Design eye-catching posters and web banners for online ad campaigns.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762753957/Poster_Banner_Designer_crttdm.jpg",
-    "userEmail": "rony.ahmed@example.com"
+    "userEmail": "rony.ahmed@example.com",
+    "postedAt": "2025-11-11T09:40:00Z"
   },
   {
     "title": "Technical Blog Writer",
@@ -78,7 +86,8 @@
     "category": "Content Writing",
     "summary": "Research and write detailed tech blogs on software development topics.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762754166/Content_Writing_fim467.jpg",
-    "userEmail": "kawsar.hossain@example.com"
+    "userEmail": "kawsar.hossain@example.com",
+    "postedAt": "2025-11-11T09:45:00Z"
   },
   {
     "title": "Short Form Video Editor",
@@ -86,7 +95,8 @@
     "category": "Video Editing",
     "summary": "Create TikTok and Instagram Reels using dynamic text and transitions.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762754279/Video_Editing_kzmgur.jpg",
-    "userEmail": "shaila.parvin@example.com"
+    "userEmail": "shaila.parvin@example.com",
+    "postedAt": "2025-11-11T09:50:00Z"
   },
   {
     "title": "Flutter App Developer",
@@ -94,7 +104,8 @@
     "category": "Mobile App Development",
     "summary": "Develop a cross-platform Flutter app for a local delivery service.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762754390/Flutter_App_Developer_k8pmec.jpg",
-    "userEmail": "zarif.mahmud@example.com"
+    "userEmail": "zarif.mahmud@example.com",
+    "postedAt": "2025-11-11T09:55:00Z"
   },
   {
     "title": "E-commerce Website Designer",
@@ -102,7 +113,8 @@
     "category": "Web Development",
     "summary": "Design an elegant Shopify store layout with conversion-optimized UX.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762754473/E-commerce_Website_Designer_gtmvmj.jpg",
-    "userEmail": "adiba.islam@example.com"
+    "userEmail": "adiba.islam@example.com",
+    "postedAt": "2025-11-11T10:00:00Z"
   },
   {
     "title": "YouTube Thumbnail Designer",
@@ -110,7 +122,8 @@
     "category": "Graphic Design",
     "summary": "Design catchy thumbnails for gaming and tech YouTube channels.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762753004/youtube_o4jfp6.jpg",
-    "userEmail": "nasir.uddin@example.com"
+    "userEmail": "nasir.uddin@example.com",
+    "postedAt": "2025-11-11T10:05:00Z"
   },
   {
     "title": "Product Description Writer",
@@ -118,7 +131,8 @@
     "category": "Content Writing",
     "summary": "Write clear, persuasive product descriptions for an online fashion brand.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762754602/Product_Description_Writer_bkr0uw.jpg",
-    "userEmail": "ritu.chowdhury@example.com"
+    "userEmail": "ritu.chowdhury@example.com",
+    "postedAt": "2025-11-11T10:10:00Z"
   },
   {
     "title": "Motion Graphics Designer",
@@ -126,7 +140,8 @@
     "category": "Video Editing",
     "summary": "Create animated intros and logo reveals using After Effects.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762754772/Motion_Graphics_Designer1_cipmle.jpg",
-    "userEmail": "tanvir.alam@example.com"
+    "userEmail": "tanvir.alam@example.com",
+    "postedAt": "2025-11-11T10:15:00Z"
   },
   {
     "title": "WordPress Developer",
@@ -134,7 +149,8 @@
     "category": "Web Development",
     "summary": "Develop and customize WordPress themes and plugins for clients.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762752986/WordPress_Website_Customization_csofjx.jpg",
-    "userEmail": "sadia.hossain@example.com"
+    "userEmail": "sadia.hossain@example.com",
+    "postedAt": "2025-11-11T10:20:00Z"
   },
   {
     "title": "UI Prototype Designer",
@@ -142,7 +158,8 @@
     "category": "UI/UX Design",
     "summary": "Build clickable prototypes for a health tracking mobile app.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762752879/Landing_Page_UIUX_Designer_zpwvcv.jpg",
-    "userEmail": "ayaan.rahim@example.com"
+    "userEmail": "ayaan.rahim@example.com",
+    "postedAt": "2025-11-11T10:25:00Z"
   },
   {
     "title": "Email Marketing Expert",
@@ -150,14 +167,16 @@
     "category": "Digital Marketing",
     "summary": "Create and schedule automated email campaigns using Mailchimp.",
     "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762752831/Email-M_cy0hnh.jpg",
-    "userEmail": "mira.khan@example.com"
+    "userEmail": "mira.khan@example.com",
+    "postedAt": "2025-11-11T10:30:00Z"
   },
   {
     "title": "Canva Social Post Designer",
     "postedBy": "Jahidul Karim",
     "category": "Graphic Design",
     "summary": "Design branded Canva posts for Facebook, Instagram, and LinkedIn pages.",
-    "coverImage": "https://i.ibb.co/H4GxkV8/canva-design.jpg",
-    "userEmail": "jahidul.karim@example.com"
+    "coverImage": "https://res.cloudinary.com/dq6ahnk8w/image/upload/v1762752941/ngo_efyafj.jpg",
+    "userEmail": "jahidul.karim@example.com",
+    "postedAt": "2025-11-11T10:35:00Z"
   }
 ]

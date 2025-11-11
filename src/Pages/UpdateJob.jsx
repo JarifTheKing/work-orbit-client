@@ -10,19 +10,26 @@ const UpdateJob = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  // ✅ Fetch single job details by ID
   useEffect(() => {
-    fetch(`http://localhost:5000/allJobs/${id}`)
+    fetch(`http://localhost:5000/myAddedJobs/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setJob(data);
         setLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        setLoading(false);
+        toast.error("Failed to fetch job details!");
+      });
   }, [id]);
 
+  // ✅ Handle job update
   const handleUpdate = (e) => {
     e.preventDefault();
     const form = e.target;
+
     const updatedJob = {
       title: form.title.value,
       category: form.category.value,
@@ -30,7 +37,7 @@ const UpdateJob = () => {
       coverImage: form.coverImage.value,
     };
 
-    fetch(`http://localhost:5000/allJobs/${id}`, {
+    fetch(`http://localhost:5000/myAddedJobs/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedJob),
@@ -45,7 +52,7 @@ const UpdateJob = () => {
             icon: "success",
             confirmButtonColor: "#2563eb",
           });
-          navigate("/allJobs");
+          navigate("/myAddedJobs");
         } else {
           toast.info("⚠️ No changes were made!");
           Swal.fire({
@@ -57,7 +64,7 @@ const UpdateJob = () => {
         }
       })
       .catch((err) => {
-        toast.error(" Update failed: " + err.message);
+        toast.error("Update failed: " + err.message);
         Swal.fire({
           title: "Error!",
           text: "Something went wrong while updating your job.",
@@ -67,7 +74,7 @@ const UpdateJob = () => {
       });
   };
 
-  // Loading Spinner
+  // ✅ Loading Spinner
   if (loading) {
     return (
       <div className="flex flex-col justify-center items-center h-screen bg-gradient-to-br from-blue-50 to-blue-100 space-y-4">
@@ -85,6 +92,7 @@ const UpdateJob = () => {
     );
   }
 
+  // ✅ Form UI
   return (
     <div className="py-16 bg-gradient-to-b from-blue-50 via-white to-blue-100 flex items-center justify-center px-4">
       <div className="max-w-2xl w-full bg-white shadow-2xl rounded-2xl p-8 transition-transform duration-300 hover:-translate-y-1">
@@ -97,6 +105,7 @@ const UpdateJob = () => {
         </p>
 
         <form onSubmit={handleUpdate} className="space-y-5">
+          {/* Job Title */}
           <div>
             <label className="block font-semibold mb-1 text-gray-700">
               Job Title
@@ -110,6 +119,7 @@ const UpdateJob = () => {
             />
           </div>
 
+          {/* Category */}
           <div>
             <label className="block font-semibold mb-1 text-gray-700">
               Category
@@ -123,6 +133,7 @@ const UpdateJob = () => {
             />
           </div>
 
+          {/* Cover Image */}
           <div>
             <label className="block font-semibold mb-1 text-gray-700">
               Cover Image URL
@@ -135,6 +146,7 @@ const UpdateJob = () => {
             />
           </div>
 
+          {/* Job Summary */}
           <div>
             <label className="block font-semibold mb-1 text-gray-700">
               Job Summary
@@ -149,14 +161,17 @@ const UpdateJob = () => {
 
           {/* Buttons */}
           <div className="flex items-center gap-8">
-            <button type="submit" className="flex-1 btn btn-primary ">
+            <button
+              type="submit"
+              className="flex-1 bg-blue-600 text-white py-2.5 rounded-md font-semibold hover:bg-blue-700 transition-transform hover:scale-[1.02]"
+            >
               Save Changes
             </button>
 
             <button
               type="button"
-              onClick={() => navigate("/allJobs")}
-              className="flex-1 bg-gray-200 text-gray-700 py-2.5 rounded-md font-semibold  hover:bg-gray-300 transition-transform hover:scale-[1.02]"
+              onClick={() => navigate("/myAddedJobs")}
+              className="flex-1 bg-gray-200 text-gray-700 py-2.5 rounded-md font-semibold hover:bg-gray-300 transition-transform hover:scale-[1.02]"
             >
               Go Back
             </button>
@@ -170,7 +185,7 @@ const UpdateJob = () => {
 
         <p className="text-center text-gray-600 text-sm mt-2 font-semibold">
           Thanks for updating with{" "}
-          <span className="font-bold logo-font text-blue-700">WorkOrbit</span>!
+          <span className="font-bold text-blue-700">WorkOrbit</span>!
         </p>
       </div>
     </div>

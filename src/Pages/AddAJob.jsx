@@ -23,32 +23,29 @@ const AddAJob = () => {
       postedDate: new Date().toISOString(),
     };
 
+    // Post to My Added Jobs Page
     fetch("http://localhost:5000/myAddedJobs", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newJob),
+    });
+
+    // Post to My All Jobs Page
+    fetch("http://localhost:5000/allJobs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newJob),
     })
       .then((res) => res.json())
       .then(() => {
         Swal.fire({
-          title: "Job Added Successfully!",
-          text: "Your job is now visible on the My Added Jobs page.",
+          title: "Job Added!",
+          text: "Your job has been added successfully.",
           icon: "success",
-          confirmButtonColor: "#2563eb",
-        }).then(() => {
-          navigate("/myAddedJobs");
         });
         form.reset();
+        navigate("/myAddedJobs");
       })
-      .catch(() =>
-        Swal.fire({
-          title: "Error!",
-          text: "Failed to add job. Try again later.",
-          icon: "error",
-        })
-      )
       .finally(() => setLoading(false));
   };
 
