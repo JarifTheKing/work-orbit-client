@@ -3,10 +3,11 @@ import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
 import { Triangle } from "react-loader-spinner";
 import Swal from "sweetalert2";
-import useAxios from "../Hooks/UseAxios";
+// import useAxios from "../Hooks/UseAxios";
+import useAxiosSecure from "../Hooks/UseAxiosSecure";
 
 const UpdateJob = () => {
-  const axiosInstance = useAxios();
+  const axiosInstance = useAxiosSecure();
   const { id } = useParams();
   const [job, setJob] = useState({});
   const [loading, setLoading] = useState(true);
@@ -37,15 +38,10 @@ const UpdateJob = () => {
       summary: form.summary.value,
       coverImage: form.coverImage.value,
     };
-
-    fetch(`https://workorbit-server.vercel.app/myAddedJobs/${id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedJob),
-    })
-      .then((res) => res.json())
+    axiosInstance
+      .patch(`/myAddedJobs/${id}`, updatedJob)
       .then((data) => {
-        if (data.modifiedCount > 0) {
+        if (data.data.modifiedCount > 0) {
           toast.success("🎉 Job updated successfully!");
           Swal.fire({
             title: "Success!",
@@ -121,16 +117,23 @@ const UpdateJob = () => {
 
           {/* Category */}
           <div>
-            <label className="block font-semibold mb-1 text-gray-700 dark:text-gray-200">
+            <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
               Category
             </label>
-            <input
-              type="text"
+            <select
               name="category"
-              defaultValue={job.category}
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-400 focus:outline-none"
               required
-            />
+              className="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-500 outline-none"
+            >
+              <option value="">Select a Category</option>
+              <option value="Web Development">Web Development</option>
+              <option value="Graphic Design">Graphic Design</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+              <option value="Writing & Translation">
+                Writing & Translation
+              </option>
+              <option value="Other">Other</option>
+            </select>
           </div>
 
           {/* Cover Image */}

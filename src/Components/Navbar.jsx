@@ -20,20 +20,6 @@ const Navbar = () => {
   };
   // -------------------
 
-  // const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-
-  // useEffect(() => {
-  //   const html = document.querySelector("html");
-  //   html.setAttribute("data-theme", theme);
-  //   localStorage.setItem("theme", theme);
-  // }, [theme]);
-
-  // const handleTheme = (checked) => {
-  //   const newTheme = checked ? "dark" : "light";
-  //   setTheme(newTheme);
-  //   localStorage.setItem("theme", newTheme);
-  // };
-
   const handleSignOut = () => {
     logOut()
       .then(() => {
@@ -144,9 +130,7 @@ const Navbar = () => {
               onChange={(e) => handleTheme(e.target.checked)}
               type="checkbox"
               defaultChecked={localStorage.getItem("theme") === "dark"}
-              
               className="theme-controller"
-              
             />
 
             {/* sun icon */}
@@ -181,21 +165,23 @@ const Navbar = () => {
 
       {user ? (
         <div className="navbar-end space-x-2">
-          <div className="group relative flex gap-2 items-center">
+          <div className="group relative flex gap-4 items-center">
             <Link to="/my-profile">
-              <img
-                className="rounded-full border border-white cursor-pointer transition-transform duration-300 group-hover:scale-110"
-                width="50"
-                height="50"
-                src={
-                  user?.photoURL ||
-                  "https://img.icons8.com/3d-fluency/94/guest-male--v3.png"
-                }
-                alt={user?.displayName}
-                title={user?.displayName || "User"}
-              />
+              <div className="h-14 w-14 rounded-full">
+                <img
+                  className="rounded-full border border-white cursor-pointer transition-transform h-14 w-14 duration-300 group-hover:scale-110"
+                  // width="50"
+                  // height="50"
+                  src={
+                    user?.photoURL ||
+                    "https://img.icons8.com/3d-fluency/94/guest-male--v3.png"
+                  }
+                  alt={user?.displayName}
+                  title={user?.displayName || "User"}
+                />
+              </div>
             </Link>
-            <h2 className="absolute left-[-80px] top-[10px] text-sm bg-blue-500 text-white p-2 rounded-md font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <h2 className="absolute left-[-120px] top-[8px] text-sm bg-blue-500 text-white p-2 rounded-md font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               {user?.displayName || "Guest"}
             </h2>
 

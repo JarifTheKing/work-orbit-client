@@ -22,11 +22,19 @@ const AllJobs = () => {
   }, []);
 
   //  Sort jobs
+  // const sortedJobs = [...allJobsData].sort((a, b) => {
+  //   const dateA = new Date(a.postedAt);
+  //   const dateB = new Date(b.postedAt);
+  //   return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+  // });
+
   const sortedJobs = [...allJobsData].sort((a, b) => {
-    const dateA = new Date(a.postedAt);
-    const dateB = new Date(b.postedAt);
+    const dateA = new Date(a.postedAt || a.postedDate);
+    const dateB = new Date(b.postedAt || b.postedDate);
     return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
   });
+
+  console.log(sortedJobs);
 
   //  Loading
   if (loading) {
@@ -69,13 +77,17 @@ const AllJobs = () => {
       <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-6 lg:px-20 z-10">
         {sortedJobs && sortedJobs.length > 0 ? (
           sortedJobs.map((job) => {
-            const formattedDate = job.postedAt
-              ? new Date(job.postedAt).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })
-              : "Unknown Date";
+            const formattedDate =
+              job.postedAt || job.postedDate
+                ? new Date(job.postedAt || job.postedDate).toLocaleDateString(
+                    "en-US",
+                    {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    }
+                  )
+                : "Unknown Date";
 
             return (
               <div
@@ -103,7 +115,10 @@ const AllJobs = () => {
                     </div>
 
                     <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-                      📅 Posted on: {formattedDate}
+                      📅 Posted on:{formattedDate}
+                      {/* {new Date(
+                        job.postedAt || job.postedDate
+                      ).toLocaleDateString()} */}
                     </p>
 
                     <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">

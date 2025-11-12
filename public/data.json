@@ -8,6 +8,7 @@
     "userEmail": "arif.khan@example.com",
     "postedAt": "2025-11-11T09:00:00Z"
   },
+
   {
     "title": "SEO Specialist",
     "postedBy": "Nadia Rahman",
@@ -17,6 +18,7 @@
     "userEmail": "nadia.rahman@example.com",
     "postedAt": "2025-11-11T09:05:00Z"
   },
+
   {
     "title": "Logo Designer for Tech Brand",
     "postedBy": "Rafiul Islam",
@@ -26,6 +28,7 @@
     "userEmail": "rafiul.islam@example.com",
     "postedAt": "2025-11-11T09:10:00Z"
   },
+
   {
     "title": "Content Writer – Blog & Articles",
     "postedBy": "Sumaiya Akter",
@@ -35,6 +38,7 @@
     "userEmail": "sumaiya.akter@example.com",
     "postedAt": "2025-11-11T09:15:00Z"
   },
+
   {
     "title": "Video Editor for YouTube Channel",
     "postedBy": "Tahmid Hasan",
@@ -44,6 +48,7 @@
     "userEmail": "tahmid.hasan@example.com",
     "postedAt": "2025-11-11T09:20:00Z"
   },
+
   {
     "title": "Mobile App UI Designer",
     "postedBy": "Moumita Sultana",
@@ -53,6 +58,7 @@
     "userEmail": "moumita.sultana@example.com",
     "postedAt": "2025-11-11T09:25:00Z"
   },
+
   {
     "title": "Full Stack Developer (MERN)",
     "postedBy": "Fahim Reza",
@@ -62,6 +68,7 @@
     "userEmail": "fahim.reza@example.com",
     "postedAt": "2025-11-11T09:30:00Z"
   },
+
   {
     "title": "Social Media Manager",
     "postedBy": "Afia Noor",
@@ -71,6 +78,7 @@
     "userEmail": "afia.noor@example.com",
     "postedAt": "2025-11-11T09:35:00Z"
   },
+
   {
     "title": "Poster & Banner Designer",
     "postedBy": "Rony Ahmed",
@@ -80,6 +88,7 @@
     "userEmail": "rony.ahmed@example.com",
     "postedAt": "2025-11-11T09:40:00Z"
   },
+
   {
     "title": "Technical Blog Writer",
     "postedBy": "Kawsar Hossain",
@@ -89,6 +98,7 @@
     "userEmail": "kawsar.hossain@example.com",
     "postedAt": "2025-11-11T09:45:00Z"
   },
+
   {
     "title": "Short Form Video Editor",
     "postedBy": "Shaila Parvin",
@@ -98,6 +108,7 @@
     "userEmail": "shaila.parvin@example.com",
     "postedAt": "2025-11-11T09:50:00Z"
   },
+
   {
     "title": "Flutter App Developer",
     "postedBy": "Zarif Mahmud",
@@ -107,6 +118,7 @@
     "userEmail": "zarif.mahmud@example.com",
     "postedAt": "2025-11-11T09:55:00Z"
   },
+
   {
     "title": "E-commerce Website Designer",
     "postedBy": "Adiba Islam",
@@ -116,6 +128,7 @@
     "userEmail": "adiba.islam@example.com",
     "postedAt": "2025-11-11T10:00:00Z"
   },
+
   {
     "title": "YouTube Thumbnail Designer",
     "postedBy": "Nasir Uddin",
@@ -125,6 +138,7 @@
     "userEmail": "nasir.uddin@example.com",
     "postedAt": "2025-11-11T10:05:00Z"
   },
+
   {
     "title": "Product Description Writer",
     "postedBy": "Ritu Chowdhury",
@@ -134,6 +148,7 @@
     "userEmail": "ritu.chowdhury@example.com",
     "postedAt": "2025-11-11T10:10:00Z"
   },
+
   {
     "title": "Motion Graphics Designer",
     "postedBy": "Tanvir Alam",
@@ -143,6 +158,7 @@
     "userEmail": "tanvir.alam@example.com",
     "postedAt": "2025-11-11T10:15:00Z"
   },
+
   {
     "title": "WordPress Developer",
     "postedBy": "Sadia Hossain",
@@ -161,6 +177,7 @@
     "userEmail": "ayaan.rahim@example.com",
     "postedAt": "2025-11-11T10:25:00Z"
   },
+
   {
     "title": "Email Marketing Expert",
     "postedBy": "Mira Khan",
@@ -170,6 +187,7 @@
     "userEmail": "mira.khan@example.com",
     "postedAt": "2025-11-11T10:30:00Z"
   },
+
   {
     "title": "Canva Social Post Designer",
     "postedBy": "Jahidul Karim",

@@ -4,6 +4,7 @@ import TopCategories from "./Home/TopCategories";
 import { Triangle } from "react-loader-spinner";
 import SomeJobs from "./Home/SomeJobs";
 import Motion from "./Motion";
+import { Link } from "react-router";
 
 const someDataPromise = fetch(
   "https://workorbit-server.vercel.app/someJobs"
@@ -110,9 +111,11 @@ const Home = () => {
               <span className="font-semibold text-white"> WorkOrbit</span> helps
               you grow beyond boundaries.
             </p>
-            <button className="mt-4 bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition-all duration-300">
-              Post a Job Now
-            </button>
+            <Link to="/add-a-job">
+              <button className="mt-4 bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition-all duration-300">
+                Post a Job Now
+              </button>
+            </Link>
 
             <div className="flex flex-wrap gap-6 mt-10 justify-center lg:justify-start">
               {[
@@ -268,7 +271,13 @@ const Home = () => {
                     </p>
                   </div>
                   <button
-                    onClick={() => (window.location.href = "/news")}
+                    onClick={() =>
+                      window.open(
+                        "https://freelancing.eu/news/freelance-business-month-2025-kicks-off/",
+                        "_blank",
+                        "noopener,noreferrer"
+                      )
+                    }
                     className="mt-6 inline-block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors self-start"
                   >
                     Read More

@@ -55,6 +55,9 @@ const SomeJobDetails = () => {
           text: "Task added successfully to your list.",
           icon: "success",
           confirmButtonColor: "#2563eb",
+          confirmButtonText: "Go to My Tasks",
+        }).then(() => {
+          navigate("/my-tasks");
         });
         form.reset();
         taskModalRef.current.close();

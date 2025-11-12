@@ -13,10 +13,10 @@ const useAxiosSecure = () => {
 
   // set Token in the header
   useEffect(() => {
-    // Add a request interceptor
+    // request interceptor
     const requestInterceptor = axiosInstance.interceptors.request.use(
       (config) => {
-        const token = user.accessToken;
+        const token = user?.accessToken;
         if (token) {
           config.headers.authorization = `Bearer ${token}`;
         }
@@ -24,19 +24,19 @@ const useAxiosSecure = () => {
       }
     );
 
-    // Add a response interceptor
+    // response interceptor
     const responseInterceptor = axiosInstance.interceptors.response.use(
       (response) => {
         return response;
       },
       (error) => {
-        const status = error.status;
-        if (status === 401 || status === 403) {
-          logOut().then(() => {
-            navigate("/register");
-          });
-          console.log("Log Out");
-        }
+        // const status = error?.response?.status;
+        // if (status === 401 || status === 403) {
+        //   // logOut().then(() => {
+        //   //   navigate("/register");
+        //   // });
+        //   console.log("Unauthorized — logging out...");
+        // }
         console.log(error);
       }
     );
