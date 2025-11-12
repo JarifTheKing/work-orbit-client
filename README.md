@@ -2,6 +2,10 @@
 
 **Live Site:** (https://workorbit-a6882.web.app/)
 
+\*\*Server Repo: = https://github.com/JarifTheKing/work-orbit-server
+
+\*\*Client Repo: = https://github.com/JarifTheKing/work-orbit-client
+
 ---
 
 ## Bullet Points
