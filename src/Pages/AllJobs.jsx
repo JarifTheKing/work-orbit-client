@@ -5,6 +5,7 @@ import { Triangle } from "react-loader-spinner";
 const AllJobs = () => {
   const [allJobsData, setAllJobsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [sortOrder, setSortOrder] = useState("newest");
 
   //  all jobs data
   useEffect(() => {
@@ -20,6 +21,13 @@ const AllJobs = () => {
       });
   }, []);
 
+  //  Sort jobs
+  const sortedJobs = [...allJobsData].sort((a, b) => {
+    const dateA = new Date(a.postedAt);
+    const dateB = new Date(b.postedAt);
+    return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+  });
+
   //  Loading
   if (loading) {
     return (
@@ -32,20 +40,32 @@ const AllJobs = () => {
   // Job Cards
   return (
     <section className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen overflow-hidden">
-      <div className="relative text-center mb-16 px-4 z-10">
+      <div className="relative text-center mb-10 px-4 z-10">
         <h2 className="text-5xl font-extrabold text-gray-900 mb-3 tracking-tight drop-shadow-sm">
           Discover <span className="text-blue-600">Exciting Opportunities</span>
         </h2>
-        <p className="text-gray-600 font-medium max-w-2xl mx-auto">
+        <p className="text-gray-600 font-medium max-w-2xl mx-auto mb-6">
           Browse freelance and remote jobs tailored for your skills and
           passions.
         </p>
+
+        {/*  Sort  */}
+        <div className="flex justify-end">
+          <select
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+            className="select select-bordered w-60 bg-white text-gray-700 font-medium"
+          >
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+          </select>
+        </div>
       </div>
 
       {/*  Cards  */}
       <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-6 lg:px-20 z-10">
-        {allJobsData && allJobsData.length > 0 ? (
-          allJobsData.map((job) => {
+        {sortedJobs && sortedJobs.length > 0 ? (
+          sortedJobs.map((job) => {
             const formattedDate = job.postedAt
               ? new Date(job.postedAt).toLocaleDateString("en-US", {
                   year: "numeric",

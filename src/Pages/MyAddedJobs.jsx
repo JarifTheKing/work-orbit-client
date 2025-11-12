@@ -4,10 +4,11 @@ import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
 import useAxios from "../Hooks/UseAxios";
+import useAxiosSecure from "../Hooks/UseAxiosSecure";
 
 const MyAddedJobs = () => {
   const { user } = useContext(AuthContext);
-  const axiosInstance = useAxios();
+  const axiosInstance = useAxiosSecure();
   const [myJobs, setMyJobs] = useState([]);
   const [loading, setLoading] = useState(true);
 

@@ -18,7 +18,7 @@ const Home = () => {
       {/* Featured Jobs */}
       <Suspense
         fallback={
-          <div className="flex justify-center items-center h-screen bg-white">
+          <div className="flex justify-center items-center h-screen bg-white ">
             <Triangle
               visible={true}
               height="80"
@@ -33,7 +33,7 @@ const Home = () => {
       </Suspense>
 
       {/* How It Works */}
-      <section className="py-16 my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 w-11/12  mx-auto">
+      <section className="py-16 my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 w-11/12  mx-auto ">
         <div className="text-center mb-12 px-4">
           <h2 className="text-4xl font-extrabold text-gray-800 mb-3">
             How <span className="text-blue-600 logo-font">WorkOrbit</span> Works
