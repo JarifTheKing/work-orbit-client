@@ -3,10 +3,11 @@ import { useLoaderData, useNavigate } from "react-router";
 import { MapPin, User, Tag, Mail } from "lucide-react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
-import useAxios from "../Hooks/UseAxios";
+import useAxiosSecure from "../Hooks/UseAxiosSecure";
+// import useAxios from "../Hooks/UseAxios";
 
 const SomeJobDetails = () => {
-  const axiosInstance = useAxios();
+  const axiosInstance = useAxiosSecure();
   const job = useLoaderData();
   const navigate = useNavigate();
   const taskModalRef = useRef(null);
