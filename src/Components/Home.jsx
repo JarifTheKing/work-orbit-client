@@ -11,15 +11,16 @@ const someDataPromise = fetch(
 
 const Home = () => {
   return (
-    <div className="w-full overflow-x-hidden flex flex-col items-center">
+    <div className="w-full overflow-x-hidden flex flex-col items-center dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300">
+      {/* Banner */}
       <div className="w-full">
-        <Banner></Banner>
+        <Banner />
       </div>
 
       {/* Featured Jobs */}
       <Suspense
         fallback={
-          <div className="flex justify-center items-center h-screen bg-white ">
+          <div className="flex justify-center items-center h-screen bg-white dark:bg-gray-900">
             <Triangle
               visible={true}
               height="80"
@@ -32,24 +33,23 @@ const Home = () => {
       >
         <div className="w-11/12 mx-auto">
           <Motion>
-            <SomeJobs someDataPromise={someDataPromise}></SomeJobs>
+            <SomeJobs someDataPromise={someDataPromise} />
           </Motion>
         </div>
       </Suspense>
 
       {/* How It Works */}
-
       <Motion>
-        <section className="py-16 my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 w-11/12  mx-auto">
+        <section className="py-16 my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 dark:from-gray-900 dark:to-gray-800 w-11/12 mx-auto text-gray-800 dark:text-gray-100 transition-colors duration-300">
           <div className="text-center mb-12 px-4">
-            <h2 className="text-4xl font-extrabold text-gray-800 mb-3">
-              How <span className="text-blue-600 logo-font">WorkOrbit</span>{" "}
+            <h2 className="text-4xl font-extrabold text-gray-800 dark:text-gray-100 mb-3">
+              How <span className="text-blue-500 logo-font">WorkOrbit</span>{" "}
               Works
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Whether you’re hiring top talent or finding your next freelance
               opportunity,{" "}
-              <span className="font-semibold text-blue-500">WorkOrbit</span>{" "}
+              <span className="font-semibold text-blue-400">WorkOrbit</span>{" "}
               makes it simple, secure, and fast.
             </p>
           </div>
@@ -74,17 +74,17 @@ const Home = () => {
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300"
+                className="flex flex-col items-center text-center p-6 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300"
               >
                 <img
                   src={item.img}
                   alt={item.title}
-                  className="w-28 h-28 sm:w-32 sm:h-32 object-contain mb-6"
+                  className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-contain mb-6"
                 />
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-sm sm:text-base">
+                <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
                   {item.desc}
                 </p>
               </div>
@@ -155,31 +155,27 @@ const Home = () => {
         </div>
       </section>
 
-      {/*  About Section */}
+      {/* About Section */}
       <Motion>
-        <section className="relative py-16 my-6 bg-gradient-to-br from-blue-50 via-white to-blue-100 overflow-hidden rounded-xl shadow-md w-11/12 mx-auto">
-          <div className="absolute top-0 left-0 w-40 h-40 bg-blue-200 rounded-full blur-3xl opacity-40 animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-56 h-56 bg-purple-200 rounded-full blur-3xl opacity-40 animate-pulse"></div>
+        <section className="relative py-16 my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 dark:from-gray-900 dark:to-gray-800 w-11/12 mx-auto overflow-hidden transition-colors duration-300">
+          <div className="absolute top-0 left-0 w-40 h-40 bg-blue-200 dark:bg-blue-800 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-56 h-56 bg-purple-200 dark:bg-purple-800 rounded-full blur-3xl opacity-30 animate-pulse"></div>
 
           <div className="relative text-center px-6 lg:px-12 z-10">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-gray-100 mb-6">
               About{" "}
-              <span className="text-blue-600 drop-shadow-md logo-font">
+              <span className="text-blue-600 dark:text-blue-400 drop-shadow-md logo-font">
                 WorkOrbit
               </span>
             </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-              <span className="font-semibold text-blue-700 logo-font">
+            <p className="text-gray-800 dark:text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed">
+              <span className="font-semibold text-blue-700 dark:text-blue-400 logo-font">
                 WorkOrbit
               </span>{" "}
               is your digital launchpad for freelancing success. We bridge the
               gap between talented professionals and businesses seeking
               expertise — making every project smooth, transparent, and
-              rewarding. Whether you’re here to hire, collaborate, or grow,{" "}
-              <span className="font-medium text-blue-700 logo-font">
-                WorkOrbit
-              </span>{" "}
-              empowers you to reach new heights in the world of remote work.
+              rewarding.
             </p>
 
             <div className="mt-10 flex flex-wrap justify-center gap-6">
@@ -199,12 +195,14 @@ const Home = () => {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="bg-white/70 backdrop-blur-md border border-blue-100 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 w-72 p-6 text-center"
+                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-blue-100 dark:border-gray-700 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 w-72 p-6 text-center"
                 >
-                  <h3 className="text-lg font-semibold text-blue-700 mb-2">
+                  <h3 className="text-lg font-semibold text-blue-700 dark:text-blue-400 mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 text-sm">{item.desc}</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -214,12 +212,12 @@ const Home = () => {
 
       {/* News Section */}
       <Motion>
-        <section className="py-16 my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 w-11/12  mx-auto">
+        <section className="py-16 my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 dark:from-gray-900 dark:to-gray-800 w-11/12 mx-auto transition-colors duration-300">
           <div className="text-center mb-10 px-4">
-            <h2 className="text-4xl font-bold text-gray-900">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
               Freelance Industry News & Insights
             </h2>
-            <p className="text-blue-600 font-medium mt-2">
+            <p className="text-blue-600 dark:text-blue-400 font-medium mt-2">
               Stay informed with the latest trends, success stories, and
               opportunities in freelancing
             </p>
@@ -250,7 +248,7 @@ const Home = () => {
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden w-full"
+                className="flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden w-full"
               >
                 <img
                   src={item.img}
@@ -259,11 +257,13 @@ const Home = () => {
                 />
                 <div className="flex flex-col justify-between flex-1 p-5">
                   <div>
-                    <p className="text-sm text-gray-500">{item.date}</p>
-                    <h3 className="text-lg font-semibold text-gray-800 mt-2">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      {item.date}
+                    </p>
+                    <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mt-2">
                       {item.title}
                     </h3>
-                    <p className="text-gray-600 mt-2 text-sm leading-relaxed">
+                    <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
@@ -281,10 +281,8 @@ const Home = () => {
       </Motion>
 
       {/* Top Categories */}
-      <div className="my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 w-11/12  mx-auto">
-        {/* <Motion> */}
-        <TopCategories></TopCategories>
-        {/* </Motion> */}
+      <div className="py-16 my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 dark:from-gray-900 dark:to-gray-800 w-11/12 mx-auto transition-colors duration-300">
+        <TopCategories />
       </div>
     </div>
   );

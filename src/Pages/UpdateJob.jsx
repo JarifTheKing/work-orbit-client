@@ -94,12 +94,12 @@ const UpdateJob = () => {
   }
 
   return (
-    <div className="py-16 bg-gradient-to-b from-blue-50 via-white to-blue-100 flex items-center justify-center px-4">
-      <div className="max-w-2xl w-full bg-white shadow-2xl rounded-2xl p-8 transition-transform duration-300 hover:-translate-y-1">
-        <h2 className="text-4xl font-extrabold text-center mb-3 text-blue-700 drop-shadow">
+    <div className="py-16 bg-gradient-to-b from-blue-50 to-blue-100 flex items-center justify-center px-4 dark:from-gray-900 dark:to-blue-900">
+      <div className="max-w-2xl w-full bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 transition-transform duration-300 hover:-translate-y-1">
+        <h2 className="text-4xl font-extrabold text-center mb-3 text-blue-700 dark:text-blue-400 drop-shadow">
           Update Your Job ✨
         </h2>
-        <p className="text-center text-gray-600 mb-8">
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-8">
           Give your post a fresh update — make it stand out and attract the best
           freelancers!
         </p>
@@ -107,54 +107,54 @@ const UpdateJob = () => {
         <form onSubmit={handleUpdate} className="space-y-5">
           {/* Job Title */}
           <div>
-            <label className="block font-semibold mb-1 text-gray-700">
+            <label className="block font-semibold mb-1 text-gray-700 dark:text-gray-200">
               Job Title
             </label>
             <input
               type="text"
               name="title"
               defaultValue={job.title}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-400 focus:outline-none"
               required
             />
           </div>
 
           {/* Category */}
           <div>
-            <label className="block font-semibold mb-1 text-gray-700">
+            <label className="block font-semibold mb-1 text-gray-700 dark:text-gray-200">
               Category
             </label>
             <input
               type="text"
               name="category"
               defaultValue={job.category}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-400 focus:outline-none"
               required
             />
           </div>
 
           {/* Cover Image */}
           <div>
-            <label className="block font-semibold mb-1 text-gray-700">
+            <label className="block font-semibold mb-1 text-gray-700 dark:text-gray-200">
               Cover Image URL
             </label>
             <input
               type="text"
               name="coverImage"
               defaultValue={job.coverImage}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
           </div>
 
           {/* Job Summary */}
           <div>
-            <label className="block font-semibold mb-1 text-gray-700">
+            <label className="block font-semibold mb-1 text-gray-700 dark:text-gray-200">
               Job Summary
             </label>
             <textarea
               name="summary"
               defaultValue={job.summary}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-400 focus:outline-none"
               rows="4"
             ></textarea>
           </div>
@@ -171,21 +171,24 @@ const UpdateJob = () => {
             <button
               type="button"
               onClick={() => navigate("/myAddedJobs")}
-              className="flex-1 bg-gray-200 text-gray-700 py-2.5 rounded-md font-semibold hover:bg-gray-300 transition-transform hover:scale-[1.02]"
+              className="flex-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-2.5 rounded-md font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-transform hover:scale-[1.02]"
             >
               Go Back
             </button>
           </div>
         </form>
 
-        <p className="text-center text-gray-500 text-sm mt-6 italic">
+        <p className="text-center text-gray-500 dark:text-gray-400 text-sm mt-6 italic">
           Tip 💡: Keep your job description short, clear, and attractive — great
           jobs attract great talent!
         </p>
 
-        <p className="text-center text-gray-600 text-sm mt-2 font-semibold">
+        <p className="text-center text-gray-600 dark:text-gray-300 text-sm mt-2 font-semibold">
           Thanks for updating with{" "}
-          <span className="font-bold text-blue-700">WorkOrbit</span>!
+          <span className="font-bold text-blue-700 dark:text-blue-400">
+            WorkOrbit
+          </span>
+          !
         </p>
       </div>
     </div>

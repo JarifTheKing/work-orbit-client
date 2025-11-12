@@ -140,16 +140,13 @@ const Navbar = () => {
         {/* Theme Toggle */}
         <li>
           <label className="swap swap-rotate">
-            {/* this hidden checkbox controls the state */}
             <input
               onChange={(e) => handleTheme(e.target.checked)}
               type="checkbox"
               defaultChecked={localStorage.getItem("theme") === "dark"}
-              //  className="toggle"
-              // onChange={(e) => handleTheme(e.target.checked)}
-              // type="checkbox"
+              
               className="theme-controller"
-              // value="synthwave"
+              
             />
 
             {/* sun icon */}

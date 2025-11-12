@@ -2,14 +2,14 @@ import React from "react";
 
 const TopCategories = () => {
   return (
-    <section className="py-16  flex justify-center">
-      <div className="">
+    <section className="py-16 my-6 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 dark:from-gray-900 dark:to-gray-800 w-11/12 mx-auto transition-colors duration-300">
+      <div>
         {/* Header */}
         <div className="text-center mb-12 px-4">
-          <h2 className="text-4xl font-bold text-gray-900 mb-3">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">
             Top Categories
           </h2>
-          <p className="text-blue-600 font-medium max-w-2xl mx-auto">
+          <p className="text-blue-600 dark:text-blue-300 font-medium max-w-2xl mx-auto">
             Explore the most popular freelance job categories and discover
             opportunities that match your skills and passions.
           </p>
@@ -42,7 +42,7 @@ const TopCategories = () => {
             ].map((cat, i) => (
               <div
                 key={i}
-                className="min-w-[250px] bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-transform hover:-translate-y-2 cursor-pointer"
+                className="min-w-[250px] bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-transform hover:-translate-y-2 cursor-pointer border border-transparent hover:border-blue-400 dark:hover:border-blue-500"
               >
                 <img
                   src={cat.img}
@@ -50,10 +50,12 @@ const TopCategories = () => {
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-5 text-center">
-                  <h3 className="text-lg font-semibold text-gray-800">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
                     {cat.title}
                   </h3>
-                  <p className="text-gray-500 text-sm mt-2">{cat.desc}</p>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">
+                    {cat.desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -61,7 +63,7 @@ const TopCategories = () => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-blue-200 my-12 w-full"></div>
+        <div className="border-t border-blue-200 dark:border-blue-800 my-12 w-full"></div>
 
         {/* Row 2 */}
         <div className="relative overflow-hidden">
@@ -90,7 +92,7 @@ const TopCategories = () => {
             ].map((cat, i) => (
               <div
                 key={i}
-                className="min-w-[250px]  rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-transform hover:-translate-y-2 cursor-pointer"
+                className="min-w-[250px] bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-transform hover:-translate-y-2 cursor-pointer border border-transparent hover:border-blue-400 dark:hover:border-blue-500"
               >
                 <img
                   src={cat.img}
@@ -98,10 +100,12 @@ const TopCategories = () => {
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-5 text-center">
-                  <h3 className="text-lg font-semibold text-gray-800">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
                     {cat.title}
                   </h3>
-                  <p className="text-gray-500 text-sm mt-2">{cat.desc}</p>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">
+                    {cat.desc}
+                  </p>
                 </div>
               </div>
             ))}

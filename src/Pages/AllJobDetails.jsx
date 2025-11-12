@@ -3,7 +3,6 @@ import { useLoaderData, useNavigate } from "react-router";
 import { MapPin, User, Tag, Mail } from "lucide-react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
-// import useAxios from "../Hooks/UseAxios";
 import useAxiosSecure from "../Hooks/UseAxiosSecure";
 
 const AllJobDetails = () => {
@@ -16,7 +15,6 @@ const AllJobDetails = () => {
   const { title, postedBy, category, summary, coverImage, userEmail } =
     job || {};
 
-  //  modal
   const handleModalOpen = () => {
     if (!user) {
       Swal.fire({
@@ -45,45 +43,6 @@ const AllJobDetails = () => {
     taskModalRef.current.showModal();
   };
 
-  //  Handle task submission
-  // const handleTaskSubmit = (e) => {
-  //   e.preventDefault();
-  //   const form = e.target;
-
-  //   const taskData = {
-  //     jobTitle: title,
-  //     workerName: form.workerName.value,
-  //     workerEmail: form.workerEmail.value,
-  //     submissionText: form.submissionText.value,
-  //     submissionDate: new Date().toISOString(),
-  //     clientEmail: userEmail,
-  //   };
-
-  //   fetch("https://workorbit-server.vercel.app/myTasks", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(taskData),
-  //   })
-  //     .then((res) => res.json())
-  //     .then(() => {
-  //       Swal.fire({
-  //         title: "Job Accepted!",
-  //         text: "Task added successfully to your list.",
-  //         icon: "success",
-  //         confirmButtonColor: "#2563eb",
-  //       });
-  //       form.reset();
-  //       taskModalRef.current.close();
-  //     })
-  //     .catch(() =>
-  //       Swal.fire({
-  //         title: "Error",
-  //         text: "Failed to add task. Please try again.",
-  //         icon: "error",
-  //       })
-  //     );
-  // };
-
   const handleTaskSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -97,13 +56,6 @@ const AllJobDetails = () => {
       clientEmail: userEmail,
     };
 
-    // Post
-    // fetch("https://workorbit-server.vercel.app/myTasks", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(taskData),
-    // })
-    //   .then((res) => res.json())
     axiosInstance
       .post("/myTasks", taskData)
       .then(() => {
@@ -132,15 +84,15 @@ const AllJobDetails = () => {
 
   if (!job) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-gray-600">
+      <div className="min-h-screen flex items-center justify-center text-gray-600 dark:bg-gray-900 dark:text-gray-300">
         <p>Job details not found.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen w-11/12 mx-auto bg-gradient-to-br from-blue-50 via-white to-indigo-50 px-4 py-10 flex justify-center">
-      <div className="w-full bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-200 flex flex-col md:flex-row">
+    <div className="min-h-screen w-11/12 mx-auto bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 px-4 py-10 flex justify-center">
+      <div className="w-full bg-white dark:bg-gray-800 shadow-2xl rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 flex flex-col md:flex-row">
         <div className="w-full md:w-1/2">
           <img
             src={coverImage}
@@ -151,8 +103,10 @@ const AllJobDetails = () => {
 
         <div className="w-full md:w-1/2 p-8 flex flex-col justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">{title}</h1>
-            <div className="flex flex-wrap items-center gap-3 text-gray-600 mb-4">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              {title}
+            </h1>
+            <div className="flex flex-wrap items-center gap-3 text-gray-600 dark:text-gray-300 mb-4">
               <span className="flex items-center gap-2">
                 <User size={16} className="text-blue-500" />
                 {postedBy}
@@ -166,12 +120,12 @@ const AllJobDetails = () => {
                 Remote
               </span>
             </div>
-            <p className="text-gray-700 mb-6">{summary}</p>
-            <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 mb-6">
-              <h3 className="text-gray-800 font-semibold text-lg mb-2">
+            <p className="text-gray-700 dark:text-gray-300 mb-6">{summary}</p>
+            <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl border border-gray-100 dark:border-gray-600 mb-6">
+              <h3 className="text-gray-800 dark:text-white font-semibold text-lg mb-2">
                 Contact Information
               </h3>
-              <p className="text-sm text-gray-600 flex items-center gap-2">
+              <p className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2">
                 <Mail size={14} className="text-blue-600" />
                 <span className="font-medium">{userEmail}</span>
               </p>
@@ -187,7 +141,7 @@ const AllJobDetails = () => {
             </button>
             <button
               onClick={() => navigate(-1)}
-              className="px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-100 transition-all"
+              className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
             >
               Go Back
             </button>
@@ -204,14 +158,14 @@ const AllJobDetails = () => {
           if (e.target === taskModalRef.current) taskModalRef.current.close();
         }}
       >
-        <div className="modal-box rounded-2xl bg-white shadow-2xl">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">
+        <div className="modal-box rounded-2xl bg-white dark:bg-gray-800 shadow-2xl">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
             Accept Job: <span className="text-blue-600">{title}</span>
           </h3>
 
           <form onSubmit={handleTaskSubmit} className="space-y-4">
             <div>
-              <label className="block text-gray-700 text-sm font-semibold mb-1">
+              <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1">
                 Your Name
               </label>
               <input
@@ -220,12 +174,12 @@ const AllJobDetails = () => {
                 defaultValue={user?.displayName || ""}
                 readOnly
                 required
-                className="w-full px-4 py-2 border rounded-lg bg-gray-100 text-gray-700"
+                className="w-full px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200"
               />
             </div>
 
             <div>
-              <label className="block text-gray-700 text-sm font-semibold mb-1">
+              <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1">
                 Your Email
               </label>
               <input
@@ -234,12 +188,12 @@ const AllJobDetails = () => {
                 defaultValue={user?.email || ""}
                 readOnly
                 required
-                className="w-full px-4 py-2 border rounded-lg bg-gray-100 text-gray-700"
+                className="w-full px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200"
               />
             </div>
 
             <div>
-              <label className="block text-gray-700 text-sm font-semibold mb-1">
+              <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1">
                 Task Submission Text
               </label>
               <textarea
@@ -247,7 +201,7 @@ const AllJobDetails = () => {
                 required
                 rows="4"
                 placeholder="Describe your work plan or initial submission..."
-                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200 resize-none"
+                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200 resize-none dark:bg-gray-700 dark:text-gray-200"
               ></textarea>
             </div>
 
@@ -255,7 +209,7 @@ const AllJobDetails = () => {
               <button
                 type="button"
                 onClick={() => taskModalRef.current.close()}
-                className="px-5 py-2 border rounded-lg text-gray-700 hover:bg-gray-100 transition"
+                className="px-5 py-2 border rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
               >
                 Cancel
               </button>

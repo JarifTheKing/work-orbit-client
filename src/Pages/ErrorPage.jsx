@@ -7,13 +7,15 @@ const ErrorPage = () => {
   const error = useRouteError();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-center">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 text-center transition-colors duration-300">
       <AlertTriangle className="text-red-500 w-16 h-16 mb-4" />
-      <h1 className="text-4xl font-bold text-gray-800 mb-2">Oops!</h1>
-      <p className="text-gray-600 mb-4">
+      <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-2">
+        Oops!
+      </h1>
+      <p className="text-gray-600 dark:text-gray-300 mb-4">
         Sorry, an unexpected error has occurred.
       </p>
-      <p className="text-red-600 mb-8">
+      <p className="text-red-600 dark:text-red-400 mb-8">
         <i>{error?.statusText || error?.message}</i>
       </p>
       <Link
