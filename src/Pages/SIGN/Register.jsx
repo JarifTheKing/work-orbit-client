@@ -26,9 +26,10 @@ const Register = () => {
     const form = e.target;
     const name = form.name.value;
     const userName = form.userName.value;
+    const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log({ form, name, userName, email, password });
+    console.log({ form, name, userName, photoURL, email, password });
 
     // Password validation
     const validatePassword = (p) => {
@@ -39,6 +40,12 @@ const Register = () => {
         return "Include at least one special character.";
       return null;
     };
+    // const validatePassword = (p) => {
+    //   if (p.length < 6) return "Password must be at least 6 characters.";
+    //   if (!/[A-Z]/.test(p)) return "Include at least one uppercase letter.";
+    //   if (!/[a-z]/.test(p)) return "Include at least one lowercase letter.";
+    //   return null;
+    // };
 
     const error = validatePassword(password);
     if (error) {
@@ -168,6 +175,17 @@ const Register = () => {
                 type="text"
                 name="userName"
                 placeholder="Choose a username"
+                className="w-full px-4 py-3 rounded-lg bg-white/80 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2079fe] outline-none transition-all duration-300"
+              />
+            </div>
+
+            {/* Photo URL */}
+            <div>
+              <label className="label text-gray-200 text-sm">Photo URL</label>
+              <input
+                type="text"
+                name="photoURL"
+                placeholder="Enter your profile photo URL"
                 className="w-full px-4 py-3 rounded-lg bg-white/80 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2079fe] outline-none transition-all duration-300"
               />
             </div>

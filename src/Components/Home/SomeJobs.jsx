@@ -5,7 +5,7 @@ import LatestProducts from "./LatestProducts";
 const SomeJobs = ({ someDataPromise }) => {
   const jobsData = use(someDataPromise);
   return (
-    <section className="py-16 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 my-10 w-11/12 mx-auto shadow-lg hover:shadow-2xl transition-all duration-500">
+    <section className="py-16 rounded-lg bg-gradient-to-b from-gray-100 to-blue-100 my-6   shadow-lg hover:shadow-2xl transition-all duration-500">
       <div className="text-center mb-12 px-4">
         <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
           Featured Jobs
